@@ -1133,13 +1133,22 @@ function vueAccueil() {
   banques.forEach(b => PIL.forEach(p => IND[p].forEach(i => {
     tot++; if (cellule(b, p, i.nom).niveau === 'absence') abs++; })));
   const bceao = banques.find(b => /BCEAO/.test(b));
+  const lourd = PIL.slice().sort((a, b) => POIDS[b] - POIDS[a])[0];
+  const afr = banques.filter(b => /BCEAO|Ghana|Afrique|africa/i.test(b));
+  const rangB = bceao ? ord.indexOf(bceao) + 1 : 0;
+  const pfB = bceao ? profil(bceao) : [];
   const cles = [
-    {val: fr(indice(prem)), t: prem + ' en tête',
-     p: 'Classe ' + classe(indice(prem)) + '. ' + (ord.every(b => classe(indice(b)) !== 'I')
-       ? 'Aucune institution n’atteint la classe I (au-delà de ' + fr(D.bornes.haute) + ').'
-       : 'Au moins une institution atteint la classe I.')},
-    {val: fr(moyP(faible)), t: NOMPIL[faible] + ' : le pilier le plus faible',
-     p: 'Score moyen des ' + n + ' institutions sur ce pilier. Il est le plus bas, ou à égalité, pour ' + nbFaible + ' sur ' + n + '.'},
+    bceao ? {val: fr(indice(bceao)), t: 'BCEAO : ' + rangB + (rangB === 1 ? 're' : 'e') + ' sur ' + n +
+      (afr.length > 1 && afr.every(b => b === bceao || indice(b) <= indice(bceao)) ? ', première institution africaine' : ''),
+     p: 'Classe ' + classe(indice(bceao)) + '. Son pilier le plus fort : ' +
+        NOMPIL[PIL[pfB.indexOf(Math.max(...pfB))]] + ' (' + fr(Math.max(...pfB), 3) + ')' +
+        (ord.slice(rangB).length ? '. Devant la ' + ord.slice(rangB).join(' et la ') + '.' : '.')}
+          : {val: fr(indice(prem)), t: 'Indice le plus élevé', p: 'Classe ' + classe(indice(prem)) + '.'},
+    {val: fr(POIDS[lourd]), t: NOMPIL[lourd] + ' : le pilier qui pèse le plus',
+     p: lourd === faible
+       ? 'C’est aussi le moins bien noté : ' + fr(moyP(lourd)) + ' de moyenne sur les ' + n +
+         ' institutions, le score le plus bas, ou à égalité, pour ' + nbFaible + ' sur ' + n + '.'
+       : 'Score moyen des ' + n + ' institutions sur ce pilier : ' + fr(moyP(lourd)) + '.'},
     {val: sansRecours + '/' + n, t: 'Sans mécanisme de recours',
      p: 'Institutions sans aucun recours documenté contre une décision assistée par l’IA.'},
     {val: prod.length + '/' + n, t: 'ML en production',
@@ -1147,11 +1156,8 @@ function vueAccueil() {
         (prod.length ? ' : ' + prod.join(', ') + '.' : '.')},
     {val: abs + '/' + tot, t: 'Cellules en absence de preuve',
      p: 'Codées 0 faute de document retrouvé. Ce n’est pas une absence établie : l’onglet Sensibilité en borne l’effet.'},
-    bceao ? {val: (ord.indexOf(bceao) + 1) + 'e', t: 'La BCEAO sur ' + n,
-     p: 'Indice ' + fr(indice(bceao)) + '. Son pilier le plus fort : ' +
-        NOMPIL[PIL[profil(bceao).indexOf(Math.max(...profil(bceao)))]] + ' (' +
-        fr(Math.max(...profil(bceao)), 3) + ').'}
-           : {val: fr(indice(prem) - indice(der)), t: 'Écart entre extrêmes', p: prem + ' et ' + der + '.'}
+    {val: fr(indice(prem) - indice(der)), t: 'Écart entre le premier et le dernier',
+     p: 'Différence entre l’indice le plus élevé et le plus bas des ' + n + ' institutions, sur une échelle de 0 à 1.'}
   ];
   document.getElementById('cartesCles').innerHTML = cles.map((c, k) =>
     '<article class="cle"><span class="no">0' + (k + 1) + '</span><span class="val">' + esc(c.val) +
