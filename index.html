@@ -1,0 +1,959 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Indice IGIAM</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+:root{
+  color-scheme: light;
+  --plane:#f9f9f7; --surface:#fcfcfb;
+  --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+  --grid:#e1e0d9; --axis:#c3c2b7; --ring:rgba(11,11,11,.10);
+  --bar:#2a78d6; --bar-soft:#cde2fb; --accent:#2a78d6;
+  --warn:#8a4b00;
+  --titre:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --texte:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19;
+    --ink:#f0efec; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --axis:#383835; --ring:rgba(255,255,255,.10);
+    --bar:#3987e5; --bar-soft:#184f95; --accent:#3987e5;
+    --warn:#eda100;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --plane:#0d0d0d; --surface:#1a1a19;
+  --ink:#f0efec; --ink2:#c3c2b7; --muted:#898781;
+  --grid:#2c2c2a; --axis:#383835; --ring:rgba(255,255,255,.10);
+  --bar:#3987e5; --bar-soft:#184f95; --accent:#3987e5;
+  --warn:#eda100;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0}
+body{
+  background:var(--plane); color:var(--ink);
+  font:15px/1.6 var(--texte);
+  padding-block:0 72px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+}
+.wrap{max-width:1060px;margin:0 auto}
+header{padding:32px 0 20px;border-bottom:1px solid var(--grid)}
+h1{font:600 24px/1.25 var(--titre);margin:0 0 6px;text-wrap:balance}
+h1 .full{color:var(--ink2);font-weight:400;font-size:.86em}
+.sub{color:var(--ink2);font-size:13.5px;margin:0}
+.poids{margin:14px 0 0;font-size:13px;color:var(--ink2)}
+.poids b{color:var(--ink);font-variant-numeric:tabular-nums}
+nav{display:flex;flex-wrap:wrap;gap:2px;margin:18px 0 0;border-bottom:1px solid var(--grid)}
+nav button{
+  appearance:none;background:none;border:0;border-bottom:2px solid transparent;
+  color:var(--ink2);font:inherit;font-size:13.5px;padding:9px 13px;cursor:pointer;
+  margin-bottom:-1px;
+}
+nav button:hover{color:var(--ink)}
+nav button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent);font-weight:600}
+section{display:none;padding:26px 0 0}
+section.on{display:block}
+h2{font:600 20px/1.3 var(--titre);margin:0 0 4px;text-wrap:balance}
+h3{font:600 15.5px/1.35 var(--titre);margin:30px 0 8px}
+.note{color:var(--ink2);font-size:13px;margin:0 0 18px;max-width:72ch}
+.card{background:var(--surface);border:1px solid var(--ring);border-radius:10px;padding:18px 20px;margin:0 0 18px}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+caption{text-align:left;color:var(--ink2);font-size:12.5px;padding:0 0 8px}
+th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--grid);vertical-align:top}
+th{font-weight:600;color:var(--ink2);font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+td:first-child,th:first-child{white-space:nowrap}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;font-feature-settings:"tnum"}
+tbody tr:hover{background:color-mix(in srgb,var(--accent) 5%,transparent)}
+tfoot td{font-weight:600;border-bottom:0;border-top:1px solid var(--axis)}
+.badge{display:inline-block;border:1px solid var(--axis);border-radius:999px;padding:1px 9px;font-size:11.5px;color:var(--ink2);white-space:nowrap}
+.bars{margin:6px 0 0}
+.row{display:grid;grid-template-columns:minmax(120px,210px) 1fr;gap:12px;align-items:center;padding:4px 0}
+.row .lab{font-size:13px;color:var(--ink2);text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.track{position:relative;height:16px;background:linear-gradient(var(--grid),var(--grid)) left center/100% 1px no-repeat;border-left:1px solid var(--axis)}
+.fill{height:16px;background:var(--bar);border-radius:0 4px 4px 0;position:relative;min-width:2px;transition:width .18s}
+.fill span{position:absolute;left:calc(100% + 8px);top:0;line-height:16px;font-size:12.5px;color:var(--ink);font-variant-numeric:tabular-nums}
+.row:hover .fill{outline:2px solid var(--surface);outline-offset:-1px;filter:brightness(1.08)}
+.tip{position:fixed;z-index:9;pointer-events:none;background:var(--surface);border:1px solid var(--ring);border-radius:7px;padding:7px 10px;font-size:12.5px;box-shadow:0 4px 14px rgba(0,0,0,.14);opacity:0;transition:opacity .1s;max-width:280px}
+.tip.on{opacity:1}
+.tip b{display:block;margin-bottom:2px}
+.calc{font-variant-numeric:tabular-nums;font-size:13px;color:var(--ink2);line-height:1.8}
+.calc b{color:var(--ink)}
+.big{font-size:28px;font-weight:650;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.tiles{display:flex;flex-wrap:wrap;gap:14px;margin:4px 0 0}
+.tile{flex:1 1 150px;background:var(--surface);border:1px solid var(--ring);border-radius:9px;padding:13px 15px}
+.tile .k{font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.tile .v{font-size:21px;font-weight:650;font-variant-numeric:tabular-nums;letter-spacing:-.01em;margin-top:2px}
+.tile .d{font-size:12px;color:var(--ink2);margin-top:2px}
+label{font-size:13px;color:var(--ink2)}
+select,input[type=text],button.act{
+  font:inherit;font-size:13.5px;color:var(--ink);background:var(--surface);
+  border:1px solid var(--axis);border-radius:7px;padding:6px 9px;
+}
+button.act{cursor:pointer}
+button.act:hover{border-color:var(--accent);color:var(--accent)}
+button.act.main{background:var(--accent);border-color:var(--accent);color:#fff}
+button.act.main:hover{filter:brightness(1.08);color:#fff}
+.bar-tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 16px}
+.ev{font-size:11.5px;color:var(--muted);white-space:nowrap}
+.ev.abs{color:var(--warn)}
+.rech{display:inline-block;font:12px/1.5 ui-monospace,"IBM Plex Mono",Menlo,monospace;
+  background:var(--plane);border:1px solid var(--grid);border-radius:5px;
+  padding:1px 6px;margin:1px 2px 1px 0;color:var(--ink2);white-space:nowrap}
+details{border-top:1px solid var(--grid);padding:9px 0}
+summary{cursor:pointer;font-size:13px;color:var(--ink2)}
+summary:hover{color:var(--ink)}
+details p{margin:8px 0 0;font-size:13px;color:var(--ink2);max-width:76ch}
+details a{color:var(--accent);word-break:break-all}
+.src{font-size:12.5px;color:var(--ink2)}
+#texteCsv{width:100%;font:12.5px/1.5 ui-monospace,"SFMono-Regular",
+  "IBM Plex Mono",Menlo,Consolas,monospace;color:var(--ink);
+  background:var(--plane);border:1px solid var(--axis);border-radius:7px;
+  padding:10px 12px;resize:vertical;white-space:pre;overflow:auto}
+.foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--grid);font-size:12.5px;color:var(--muted)}
+.theme{position:absolute;top:30px;right:0}
+header{position:relative}
+.chg{color:var(--warn);font-weight:600}
+@media (max-width:640px){
+  .row{grid-template-columns:1fr;gap:2px}
+  .row .lab{text-align:left}
+  .fill span{left:auto;right:-46px}
+  table{font-size:12.5px}
+  th,td{padding:6px 7px}
+}
+</style>
+<div class="wrap">
+
+<header>
+  <button class="act theme" id="theme" type="button">Thème</button>
+  <h1>IGIAM <span class="full">: indice de Gouvernance de l’Intelligence Artificielle Monétaire</span></h1>
+  <p class="sub" id="sousTitre"></p>
+  <p class="poids" id="ligneP"></p>
+  <nav id="nav" role="tablist"></nav>
+</header>
+
+<section id="s-classement" class="on">
+  <h2>Classement des institutions</h2>
+  <p class="note">Chaque score de pilier est la somme des codes de ses quatre
+  indicateurs, divisée par 8. L’indice est la moyenne pondérée des quatre piliers.
+  Les classes de maturité sont bornées à <span id="b1"></span> et
+  <span id="b2"></span>.</p>
+  <div class="card">
+    <div class="bars" id="barsClassement"></div>
+  </div>
+  <div class="card"><table id="tClassement"></table></div>
+</section>
+
+<section id="s-fiche">
+  <h2>Fiche détaillée</h2>
+  <p class="note">Les seize cellules telles qu’elles sont codées, avec le document
+  qui les établit. Le calcul est écrit terme à terme : il peut être refait à la main
+  depuis cet écran.</p>
+  <div class="bar-tools">
+    <label for="selFiche">Institution</label>
+    <select id="selFiche"></select>
+  </div>
+  <div class="card" id="ficheCalc"></div>
+  <div class="card" id="ficheTable"></div>
+  <div class="card" id="ficheSrc"></div>
+</section>
+
+<section id="s-reco">
+  <h2>Recommandations</h2>
+  <p class="note">Sélectionnez une institution. Les recommandations ne sont pas
+  rédigées librement : chacune est l’indicateur suivant du barème, et le gain
+  annoncé est celui que l’indice enregistre si cette marche est franchie. Elles
+  sont classées par ce gain, c’est-à-dire par le poids du pilier concerné.</p>
+  <div class="bar-tools">
+    <label for="selReco">Institution</label>
+    <select id="selReco"></select>
+  </div>
+  <div class="tiles" id="recoTuiles"></div>
+  <div class="card" style="margin-top:14px" id="recoChemin"></div>
+  <div class="card" id="recoTable"></div>
+  <div class="card" id="recoIA">
+    <h3 style="margin-top:0">Synthèse rédigée</h3>
+    <p class="note" id="recoIANote"></p>
+    <div class="bar-tools" id="recoIABarre" hidden>
+      <button class="act main" id="recoIABouton" type="button">Rédiger la synthèse</button>
+      <span class="src" id="recoIAEtat"></span>
+    </div>
+    <div id="recoIATexte"></div>
+  </div>
+</section>
+
+<section id="s-edition">
+  <h2>Codage et édition</h2>
+  <p class="note">Modifier un code recalcule immédiatement le score du pilier, l’indice
+  et le classement. Les modifications restent dans cette page : elles ne touchent ni
+  les fichiers de données ni les chiffres de la thèse, et le bouton de réinitialisation
+  rétablit le codage publié.</p>
+  <div class="bar-tools">
+    <label for="selEdit">Institution</label>
+    <select id="selEdit"></select>
+    <button class="act" id="reset" type="button">Rétablir le codage publié</button>
+    <span class="src" id="etatEdit"></span>
+  </div>
+  <div class="tiles" id="editTuiles"></div>
+  <div class="card" style="margin-top:14px" id="editCalc"></div>
+  <div class="card" id="editTable"></div>
+  <h3>Grille d’enquête</h3>
+  <p class="note">Pour chaque indicateur, la question à trancher, les documents où
+  chercher et des termes de recherche. Rien n’y est affirmé : c’est une aide à la
+  recherche documentaire, pas un codage. Le niveau retenu doit toujours venir d’un
+  document publié par l’institution.</p>
+  <div class="bar-tools">
+    <button class="act" id="expEnquete" type="button">Exporter la grille d’enquête</button>
+    <span class="src" id="enqueteEtat"></span>
+  </div>
+  <div class="card" id="enqueteTable"></div>
+
+  <h3>Ajouter une institution</h3>
+  <p class="note">La nouvelle institution est créée avec tous ses codes à 0, c’est-à-dire
+  en absence de preuve, conformément à la règle 4 du protocole. Elle est ensuite codée
+  cellule par cellule ci-dessus.</p>
+  <div class="bar-tools">
+    <input type="text" id="nouvNom" placeholder="Nom de la banque centrale" size="34">
+    <button class="act main" id="ajouter" type="button">Ajouter</button>
+  </div>
+</section>
+
+<section id="s-sensibilite">
+  <h2>Analyse de sensibilité</h2>
+  <p class="note">Trois sources d’incertitude. Elles ne pèsent pas du même poids :
+  l’incertitude dominante est le codage, non la pondération.</p>
+
+  <h3>1. La pondération des piliers</h3>
+  <p class="note">L’indice est recalculé sous trois jeux de poids : les poids retenus,
+  dérivés des deux cadres de référence ; les poids de la version publiée antérieure ;
+  et des poids égaux.</p>
+  <div class="card"><table id="tPoids"></table></div>
+
+  <h3>2. Le codage des cellules</h3>
+  <p class="note">Un seul indicateur codé un cran plus haut déplace l’indice de
+  0,125 × le poids de son pilier. On tire ensuite, dans chaque pilier, un indicateur
+  au hasard dont le code est relevé ou abaissé d’un cran, le signe étant lui aussi
+  tiré au hasard, et l’on compte combien de fois le classement survit.</p>
+  <div class="tiles" id="tuilesCodage"></div>
+  <div class="card" style="margin-top:14px"><table id="tCrans"></table></div>
+
+  <h3>3. L’absence de preuve</h3>
+  <p class="note">Les cellules codées 0 faute de document retrouvé ne sont pas des
+  zéros établis. On relève ces seules cellules d’un cran, puis de deux, ce qui borne
+  l’effet de l’absence de preuve.</p>
+  <div class="card"><table id="tAbsence"></table></div>
+</section>
+
+<section id="s-export">
+  <h2>Export</h2>
+  <p class="note">Les fichiers exportés reflètent l’état affiché, modifications comprises.
+  Le séparateur est le point-virgule et l’encodage UTF-8 avec BOM, pour une ouverture
+  directe sous Excel.</p>
+  <div class="bar-tools">
+    <button class="act main" id="expScores" type="button">Scores et classes</button>
+    <button class="act" id="expCodage" type="button">Codage complet</button>
+    <button class="act" id="expPoids" type="button">Dérivation des poids</button>
+  </div>
+  <div class="card" id="zoneCsv" hidden>
+    <div class="bar-tools" style="margin:0 0 12px">
+      <b id="nomCsv" style="font-size:13.5px"></b>
+      <button class="act" id="copierCsv" type="button">Copier</button>
+      <span class="src" id="etatCsv"></span>
+    </div>
+    <textarea id="texteCsv" readonly spellcheck="false" rows="14"></textarea>
+  </div>
+  <div class="card">
+    <h3 style="margin-top:0">Recette</h3>
+    <p class="note" id="recette"></p>
+  </div>
+</section>
+
+<p class="foot" id="pied"></p>
+</div>
+<div class="tip" id="tip"></div>
+
+<script>
+const D = {"piliers":[{"id":"P1","nom":"Institutionnel","indicateurs":[{"nom":"Stratégie IA formalisée","niveaux":["Aucun document publié","Document en consultation ou annoncé","Stratégie publiée et mise en œuvre"]},{"nom":"Charte éthique IA","niveaux":["Aucune charte","Charte en développement","Charte publiée et appliquée"]},{"nom":"Réglementation des algorithmes décisionnels","niveaux":["Aucune réglementation","Réglementation en projet","Réglementation en vigueur"]},{"nom":"Publication des modèles","niveaux":["Aucune publication","Publication partielle (descriptions)","Publication complète (code, données)"]}],"poids":0.21},{"id":"P2","nom":"Technique","indicateurs":[{"nom":"Infrastructure cloud/HPC","niveaux":["Absente ou héritée","En cours de déploiement","Opérationnelle et dédiée à l’IA"]},{"nom":"Accès données temps réel","niveaux":["Aucun accès","Accès partiel (certains flux)","Accès complet (paiements, marchés)"]},{"nom":"Capacité de backtesting","niveaux":["Absente","Ponctuelle, non systématique","Systématique et documentée"]},{"nom":"Adoption de LLM/ML","niveaux":["Aucune utilisation","Expérimentation / pilotes","Déploiement en production"]}],"poids":0.31},{"id":"P3","nom":"Capital humain","indicateurs":[{"nom":"Experts IA dans les comités","niveaux":["Aucun expert identifié","Experts consultés ad hoc","Experts intégrés dans les comités"]},{"nom":"Programmes de formation","niveaux":["Aucune formation","Formations ponctuelles","Programme structuré et récurrent"]},{"nom":"Partenariats académiques","niveaux":["Aucun partenariat","Partenariats informels","Partenariats formalisés et actifs"]},{"nom":"Culture de données","niveaux":["Faible sensibilisation","Sensibilisation en cours","Culture intégrée dans les processus"]}],"poids":0.16},{"id":"P4","nom":"Données et éthique","indicateurs":[{"nom":"Qualité des données","niveaux":["Non évaluée","Évaluation partielle","Cadre qualité systématique"]},{"nom":"Transparence et auditabilité","niveaux":["Aucune mesure","Mesures partielles","Auditabilité complète des modèles"]},{"nom":"Mécanismes de recours","niveaux":["Absents","En développement","Opérationnels"]},{"nom":"Lutte contre les biais","niveaux":["Non adressée","Sensibilisation","Protocoles de test et de correction"]}],"poids":0.32}],"banques":["Banque de France","Reserve Bank of India","Banco Central do Brasil","Banque centrale du Ghana","BCEAO (UEMOA)"],"codage":{"Banque de France|P1|Stratégie IA formalisée":{"code":2,"niveau":"preuve","document":"Coffinet J. et Delbos J.-B., « Pourquoi une banque centrale devrait-elle s’intéresser à l’intelligence artificielle ? L’exemple de la Banque de France », Bulletin de la Banque de France n° 266/6","type":"Primaire — publication institutionnelle","date":"septembre-octobre 2026 (décrit l’état 2021-2026)","localisation":"p. 5 et p. 9","url":"https://www.banque-france.fr/system/files/2026-10/BDF266-6_IA-et-BCN.pdf","justification":"Une action stratégique IA a été lancée au milieu de 2024 et achevée avant la fin de 2025 (p. 5), et le plan stratégique 2026-2028 donne à l’IA une place centrale (p. 5 et 9). Stratégie donc publiée et mise en œuvre : barème 2. L’état décrit tombe dans la fenêtre 2024-2025, bien que la publication soit postérieure."},"Banque de France|P1|Charte éthique IA":{"code":2,"niveau":"preuve","document":"Coffinet J. et Delbos J.-B., « Pourquoi une banque centrale devrait-elle s’intéresser à l’intelligence artificielle ? L’exemple de la Banque de France », Bulletin de la Banque de France n° 266/6","type":"Primaire — publication institutionnelle","date":"septembre-octobre 2026 (décrit l’état 2021-2026)","localisation":"p. 6","url":"https://www.banque-france.fr/system/files/2026-10/BDF266-6_IA-et-BCN.pdf","justification":"La Banque de France a signé la « Charte IA Responsable » de l’Institut du Numérique Responsable à la fin de 2025, et obtenu le label GEEIS « IA inclusive » en 2023, présenté comme le premier pour une banque centrale (p. 6). Charte publiée et appliquée : barème 2. Réserve à déclarer : il s’agit de l’adhésion à une charte externe, non d’une charte propre."},"Banque de France|P1|Réglementation des algorithmes décisionnels":{"code":2,"niveau":"preuve","document":"Coffinet J. et Delbos J.-B., « Pourquoi une banque centrale devrait-elle s’intéresser à l’intelligence artificielle ? L’exemple de la Banque de France », Bulletin de la Banque de France n° 266/6","type":"Primaire — publication institutionnelle","date":"septembre-octobre 2026 (décrit l’état 2021-2026)","localisation":"p. 7 et p. 9","url":"https://www.banque-france.fr/system/files/2026-10/BDF266-6_IA-et-BCN.pdf","justification":"Un Groupe Conseil IA créé en 2025 réunit les compétences données, informatique, juridique, protection des données et déontologie, et a rendu une vingtaine d’avis en un an sur des projets et sur des applications déjà en production (p. 7) ; l’institution s’est dotée d’une organisation dédiée pour assurer une gouvernance claire de l’IA (p. 9). Encadrement en vigueur et opérant : barème 2. AMBIGUÏTÉ DE L’INDICATEUR à signaler : le libellé peut se lire comme l’encadrement des algorithmes de l’institution elle-même, ou comme la réglementation qu’elle impose au secteur. Le codage retient la première lecture, conformément à la règle 1 du protocole."},"Banque de France|P1|Publication des modèles":{"code":1,"niveau":"preuve","document":"Coffinet J. et Delbos J.-B., « Pourquoi une banque centrale devrait-elle s’intéresser à l’intelligence artificielle ? L’exemple de la Banque de France », Bulletin de la Banque de France n° 266/6","type":"Primaire — publication institutionnelle","date":"septembre-octobre 2026 (décrit l’état 2021-2026)","localisation":"encadrés 1 et 2, p. 3 et p. 5","url":"https://www.banque-france.fr/system/files/2026-10/BDF266-6_IA-et-BCN.pdf","justification":"Le bulletin publie la description des applications — huit de 2021 à 2024 (encadré 1) et cinq déployées en 2025 et début 2026 (encadré 2) — avec leur objet et, pour certaines, leur fiabilité. Aucune publication de code ni de données n’est documentée. Publication partielle, par descriptions : barème 1."},"Banque de France|P2|Infrastructure cloud/HPC":{"code":1,"niveau":"inference","document":"Coffinet J. et Delbos J.-B., « Pourquoi une banque centrale devrait-elle s’intéresser à l’intelligence artificielle ? L’exemple de la Banque de France », Bulletin de la Banque de France n° 266/6","type":"Primaire — publication institutionnelle","date":"septembre-octobre 2026 (décrit l’état 2021-2026)","localisation":"p. 8","url":"https://www.banque-france.fr/system/files/2026-10/BDF266-6_IA-et-BCN.pdf","justification":"Le bulletin expose trois options — modèles propriétaires internes, outils de cloud tiers, solutions hybrides — et mentionne les plateformes souveraines d’IA sécurisées, SANS DIRE laquelle la Banque de France retient (p. 8). Le discours de Denis Beau du 2 juillet 2024 ajoute que certaines données sont trop confidentielles pour un cloud tiers. Le déploiement de cinq outils en production atteste une infrastructure opérationnelle, mais aucun document ne l’établit comme dédiée à l’IA : barème 1 retenu par stricte application de la règle 4."},"Banque de France|P2|Accès données temps réel":{"code":1,"niveau":"preuve","document":"Coffinet J. et Delbos J.-B., « Pourquoi une banque centrale devrait-elle s’intéresser à l’intelligence artificielle ? L’exemple de la Banque de France », Bulletin de la Banque de France n° 266/6","type":"Primaire — publication institutionnelle","date":"septembre-octobre 2026 (décrit l’état 2021-2026)","localisation":"encadré 1, p. 3 ; encadré 2, p. 5","url":"https://www.banque-france.fr/system/files/2026-10/BDF266-6_IA-et-BCN.pdf","justification":"Détection d’anomalies dans les remises réglementaires (2021), détection d’opérations atypiques pour la LCB-FT (2022, puis outil déployé en 2025-2026), détection de soupçons de fraude (2023) : l’institution accède donc à des flux de données bancaires. Mais aucun document n’établit un accès complet aux flux de paiements et de marchés, que demande le barème 2. Accès partiel : barème 1."},"Banque de France|P2|Capacité de backtesting":{"code":1,"niveau":"preuve","document":"Coffinet J. et Delbos J.-B., « Pourquoi une banque centrale devrait-elle s’intéresser à l’intelligence artificielle ? L’exemple de la Banque de France », Bulletin de la Banque de France n° 266/6","type":"Primaire — publication institutionnelle","date":"septembre-octobre 2026 (décrit l’état 2021-2026)","localisation":"p. 5","url":"https://www.banque-france.fr/system/files/2026-10/BDF266-6_IA-et-BCN.pdf","justification":"Des taux de performance sont rapportés — plus de 95 % de bonnes réponses pour l’assistant RH, 90 % pour l’assistant accueil, 95 % de fiabilité pour l’analyse des produits structurés — mais le bulletin les présente comme des premiers retours d’utilisateurs, et non comme des audits formels (p. 5). Évaluation ponctuelle, non systématique : barème 1. C’est le document lui-même qui écarte le barème 2."},"Banque de France|P2|Adoption de LLM/ML":{"code":2,"niveau":"preuve","document":"Coffinet J. et Delbos J.-B., « Pourquoi une banque centrale devrait-elle s’intéresser à l’intelligence artificielle ? L’exemple de la Banque de France », Bulletin de la Banque de France n° 266/6","type":"Primaire — publication institutionnelle","date":"septembre-octobre 2026 (décrit l’état 2021-2026)","localisation":"p. 1, encadrés 1 et 2","url":"https://www.banque-france.fr/system/files/2026-10/BDF266-6_IA-et-BCN.pdf","justification":"Plus de soixante expérimentations depuis 2015, dont neuf entrées en application début 2025 (p. 1) ; huit applications listées de 2021 à 2024 (encadré 1) ; cinq cas d’usage prioritaires déployés en 2025 et début 2026, dont des assistants conversationnels (encadré 2). Déploiement en production : barème 2."},"Banque de France|P3|Experts IA dans les comités":{"code":2,"niveau":"preuve","document":"Coffinet J. et Delbos J.-B., « Pourquoi une banque centrale devrait-elle s’intéresser à l’intelligence artificielle ? L’exemple de la Banque de France », Bulletin de la Banque de France n° 266/6","type":"Primaire — publication institutionnelle","date":"septembre-octobre 2026 (décrit l’état 2021-2026)","localisation":"p. 7","url":"https://www.banque-france.fr/system/files/2026-10/BDF266-6_IA-et-BCN.pdf","justification":"Le Groupe Conseil IA, créé en 2025, réunit les compétences données, informatique, juridique, protection des données et déontologie, et a rendu une vingtaine d’avis en un an (p. 7). Experts intégrés dans une instance permanente : barème 2."},"Banque de France|P3|Programmes de formation":{"code":0,"niveau":"absence","document":"AUCUN DOCUMENT TROUVÉ. Le bulletin n° 266/6 énonce l’objectif de déployer l’IA « pour tous les agents » (p. 5) et de la rendre accessible à tous (p. 9), sans décrire de programme de formation.","type":"Absence de preuve","date":"—","localisation":"p. 5 et p. 9 du bulletin, par leur silence","url":"https://www.banque-france.fr/system/files/2026-10/BDF266-6_IA-et-BCN.pdf","justification":"ABSENCE DE PREUVE, non absence établie. Un objectif d’accessibilité n’est pas une formation. Le barème 1 exige des formations, même ponctuelles : aucune n’est documentée. À reprendre si le rapport annuel ou le bilan social de la Banque de France mentionne un dispositif de formation à l’IA."},"Banque de France|P3|Partenariats académiques":{"code":2,"niveau":"preuve","document":"Banque de France, « Accès aux données granulaires » — accord de partenariat avec le Centre d’Accès Sécurisé aux Données (CASD) ouvrant 75 bases de la Banque de France aux chercheurs académiques ; réseau international INEXDA","type":"Primaire — page institutionnelle","date":"portail ouvert depuis le 4 avril 2022","localisation":"section « Accès pour les chercheurs académiques »","url":"https://www.banque-france.fr/fr/publications-et-statistiques/statistiques/acces-aux-donnees-granulaires","justification":"Accord de partenariat formalisé, en vigueur et utilisé : 75 bases accessibles aux chercheurs via le CASD, demandes recevables depuis le 4 avril 2022, possibilité de croiser avec les données de l’Insee et de la DGFiP. Partenariats formalisés et actifs : barème 2. Le bulletin n° 266/6 (p. 9) évoque en outre une coopération avec des laboratoires de recherche, mais en termes trop généraux pour coder."},"Banque de France|P3|Culture de données":{"code":2,"niveau":"preuve","document":"Décision du gouverneur D.R. n° 2019-30 portant organisation de la Direction des Données et des Services analytiques (DDSA) ; et bulletin n° 266/6, signé par deux agents de cette direction","type":"Primaire — décision institutionnelle","date":"2019, toujours en vigueur","localisation":"intitulé et objet de la décision ; signature du bulletin","url":"https://www.banque-france.fr/system/files/d-2019-30_organisation_ddsa.pdf","justification":"Une direction des données et des services analytiques existe par décision du gouverneur depuis 2019, et plus de soixante expérimentations ont été conduites depuis 2015 (bulletin, p. 1). La fonction est institutionnalisée dans l’organigramme, non portée par des initiatives isolées : culture intégrée dans les processus, barème 2."},"Banque de France|P4|Qualité des données":{"code":1,"niveau":"preuve","document":"Coffinet J. et Delbos J.-B., « Pourquoi une banque centrale devrait-elle s’intéresser à l’intelligence artificielle ? L’exemple de la Banque de France », Bulletin de la Banque de France n° 266/6","type":"Primaire — publication institutionnelle","date":"septembre-octobre 2026 (décrit l’état 2021-2026)","localisation":"encadré 1, p. 3 ; encadré 3, p. 6","url":"https://www.banque-france.fr/system/files/2026-10/BDF266-6_IA-et-BCN.pdf","justification":"L’IA sert à la détection d’anomalies et à l’imputation statistique dans les enquêtes européennes auprès des ménages et les données d’émissions carbone, et au rapprochement approximatif de bases d’entreprises (p. 3) ; des données synthétiques ou anonymisées sont produites pour protéger les données sensibles (p. 3) ; l’encadré 3 relève la qualité et la fraîcheur des données et le risque « garbage in, garbage out » (p. 6). Des dispositifs existent, mais aucun cadre qualité systématique n’est nommé : évaluation partielle, barème 1."},"Banque de France|P4|Transparence et auditabilité":{"code":1,"niveau":"preuve","document":"Coffinet J. et Delbos J.-B., « Pourquoi une banque centrale devrait-elle s’intéresser à l’intelligence artificielle ? L’exemple de la Banque de France », Bulletin de la Banque de France n° 266/6","type":"Primaire — publication institutionnelle","date":"septembre-octobre 2026 (décrit l’état 2021-2026)","localisation":"encadré 3, p. 6 ; p. 5","url":"https://www.banque-france.fr/system/files/2026-10/BDF266-6_IA-et-BCN.pdf","justification":"L’encadré 3 recommande la supervision humaine, la transparence et la justification des décisions prises par l’IA (p. 6) ; les labels d’IA responsable reposent sur une auto-évaluation suivie d’un audit, mais le bulletin décrit là une pratique de place, non un processus propre à la Banque de France. Les taux rapportés sont des retours d’utilisateurs, non des audits (p. 5). Mesures partielles : barème 1. À noter que le document de l’ACPR de juin 2020 développe quatre niveaux d’explication et une méthode d’audit, mais pour le secteur supervisé : il ne code pas ici, par la règle 1."},"Banque de France|P4|Mécanismes de recours":{"code":0,"niveau":"absence","document":"AUCUN DOCUMENT TROUVÉ. Le bulletin n° 266/6 ne décrit aucun mécanisme de recours pour les personnes affectées par une décision assistée par l’IA. Il indique seulement que les agents traitent encore les cas complexes des assistants conversationnels (p. 5).","type":"Absence de preuve","date":"—","localisation":"p. 5 ; silence du reste du document","url":"https://www.banque-france.fr/system/files/2026-10/BDF266-6_IA-et-BCN.pdf","justification":"ABSENCE DE PREUVE. Le maintien d’un agent humain sur les cas complexes est une procédure de traitement, non un mécanisme de recours ouvert au public. Le barème 1 exige un mécanisme en développement : rien ne l’atteste."},"Banque de France|P4|Lutte contre les biais":{"code":1,"niveau":"preuve","document":"Coffinet J. et Delbos J.-B., « Pourquoi une banque centrale devrait-elle s’intéresser à l’intelligence artificielle ? L’exemple de la Banque de France », Bulletin de la Banque de France n° 266/6","type":"Primaire — publication institutionnelle","date":"septembre-octobre 2026 (décrit l’état 2021-2026)","localisation":"p. 6, encadré 3","url":"https://www.banque-france.fr/system/files/2026-10/BDF266-6_IA-et-BCN.pdf","justification":"Label GEEIS « IA inclusive » obtenu en 2023 et Charte IA Responsable signée fin 2025 (p. 6) ; l’encadré 3 qualifie la prévention des biais d’essentielle et recommande la supervision humaine. Mais le bulletin ne décrit aucun protocole de test ni de correction des biais. Sensibilisation : barème 1."},"Reserve Bank of India|P1|Stratégie IA formalisée":{"code":1,"niveau":"inference","document":"Reserve Bank of India, « Utkarsh 2.0 » — cadre stratégique à moyen terme 2023-2025. L’IA et l’apprentissage automatique y figurent comme moyens d’analyse des données, selon les comptes rendus de son lancement par le gouverneur.","type":"Primaire non consulté — la page du PDF est protégée par une vérification humaine ; fait rapporté par la presse économique","date":"30 décembre 2022, horizon 2023-2025","localisation":"rbidocs.rbi.org.in/rdocs/content/pdfs/Utkarsh30122022.pdf","url":"https://rbidocs.rbi.org.in/rdocs/content/pdfs/Utkarsh30122022.pdf","justification":"L’IA apparaît dans une stratégie institutionnelle publiée, mais comme moyen au service de l’analyse des données, et non comme objet d’une stratégie IA dédiée. Barème 1. À VÉRIFIER PAR L’AUTEURE : le PDF d’Utkarsh 2.0 est inaccessible automatiquement ; si le document fixe des objectifs IA datés et suivis, le code passe à 2."},"Reserve Bank of India|P1|Charte éthique IA":{"code":0,"niveau":"absence","document":"AUCUNE CHARTE PROPRE TROUVÉE. Le rapport FREE-AI énonce sept « Sutras » — Trust is the Foundation, People First, Innovation over Restraint, Fairness and Equity, Accountability, Understandable by Design, Safety Resilience and Sustainability — mais comme principes destinés au secteur financier régulé.","type":"Absence de preuve pour l’usage interne","date":"13 août 2025 ; comité constitué le 26 décembre 2024","localisation":"communiqué du 13 août 2025 ; les sept Sutras","url":"https://rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=61018","justification":"ABSENCE DE PREUVE sous la lecture A : aucune charte ne régit l’usage de l’IA par la RBI elle-même. Les sept Sutras s’adressent aux entités régulées, ce que le communiqué énonce explicitement (« to guide the use of AI in the financial sector »). La règle 1 interdit donc de coder ici."},"Reserve Bank of India|P1|Réglementation des algorithmes décisionnels":{"code":0,"niveau":"absence","document":"AUCUN ENCADREMENT INTERNE TROUVÉ. Le cadre FREE-AI adresse ses obligations — tenue d’un inventaire interne des systèmes d’IA, audits internes et de tiers fondés sur le risque, transparence et équité — aux entités régulées, non à la RBI.","type":"Absence de preuve pour l’usage interne","date":"13 août 2025 ; comité constitué le 26 décembre 2024","localisation":"piliers « Governance », « Protection », « Assurance » du rapport","url":"https://rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=61018","justification":"ABSENCE DE PREUVE sous la lecture A. C’est l’indicateur sur lequel l’ambiguïté du libellé coûte le plus cher : la RBI réglemente abondamment les algorithmes de son secteur et ne documente aucun encadrement des siens. L’écart entre les deux lectures est de deux points sur ce seul indicateur."},"Reserve Bank of India|P1|Publication des modèles":{"code":1,"niveau":"preuve","document":"Business Standard, « RBI Innovation Hub develops MuleHunter.ai to combat mule account frauds », rapportant l’annonce du gouverneur Shaktikanta Das en déclaration de politique monétaire et les précisions du sous-gouverneur T. Rabi Sankar en conférence de presse","type":"Presse rapportant une déclaration officielle primaire (déclaration de politique monétaire du 6 décembre 2024)","date":"6 décembre 2024","localisation":"corps de l’article ; conférence de presse post-CPM","url":"https://www.business-standard.com/finance/news/rbi-innovation-hub-develops-mulehunter-ai-to-combat-mule-account-frauds-124120601042_1.html","justification":"L’outil MuleHunter.ai est décrit publiquement — objet, approche par apprentissage automatique, source de données — sans publication de code ni de jeux de données. Publication partielle par descriptions : barème 1."},"Reserve Bank of India|P2|Infrastructure cloud/HPC":{"code":0,"niveau":"absence","document":"AUCUN DOCUMENT TROUVÉ sur l’infrastructure de calcul propre de la RBI dédiée à l’IA. Le sous-gouverneur T. Rabi Sankar présente MuleHunter.ai comme une « infrastructure-level facility » destinée aux banques de petite taille qui n’ont pas les moyens de bâtir ces systèmes : c’est une infrastructure pour le secteur, non pour la RBI.","type":"Absence de preuve","date":"6 décembre 2024","localisation":"déclarations en conférence de presse post-CPM","url":"https://www.business-standard.com/finance/news/rbi-innovation-hub-develops-mulehunter-ai-to-combat-mule-account-frauds-124120601042_1.html","justification":"ABSENCE DE PREUVE. Les filiales ReBIT et IFTAS portent les fonctions informatiques du groupe, mais aucun document ne décrit une infrastructure de calcul dédiée à l’IA. Le barème 1 exige un déploiement en cours : rien ne l’atteste."},"Reserve Bank of India|P2|Accès données temps réel":{"code":1,"niveau":"preuve","document":"Déclaration du sous-gouverneur T. Rabi Sankar : la plateforme MuleHunter.ai « will use databases from all banks and payment system operators », son moteur étant entraîné sur cet ensemble de données","type":"Presse rapportant une déclaration officielle","date":"6 décembre 2024","localisation":"conférence de presse post-CPM","url":"https://www.business-standard.com/finance/news/rbi-innovation-hub-develops-mulehunter-ai-to-combat-mule-account-frauds-124120601042_1.html","justification":"L’accès porte sur les bases des banques et des opérateurs de systèmes de paiement, donc sur des flux de paiement. Mais le caractère temps réel n’est pas établi, et le dispositif est annoncé, non constaté. Accès partiel : barème 1."},"Reserve Bank of India|P2|Capacité de backtesting":{"code":1,"niveau":"inference","document":"Déclaration du sous-gouverneur Swaminathan J. : « the pilots for MuleHunter.AI have been successful », rapportée par la presse économique indienne","type":"Presse rapportant une déclaration officielle","date":"2025","localisation":"déclaration publique","url":"https://caalley.com/new-update/indian-news-listings/rbi-the-pilots-for-mulehunter-ai-have-been-successful-says-swaminathan","justification":"Une évaluation de pilote a eu lieu et son résultat a été rendu public, mais aucune procédure systématique et documentée n’est décrite, et aucun chiffre n’est publié. Évaluation ponctuelle : barème 1. Niveau de preuve faible — déclaration rapportée par la presse, au bas de la hiérarchie du protocole."},"Reserve Bank of India|P2|Adoption de LLM/ML":{"code":1,"niveau":"preuve","document":"MuleHunter.ai, modèle fondé sur l’IA et l’apprentissage automatique développé par le Reserve Bank Innovation Hub (RBIH), filiale détenue à 100 % par la RBI ; piloté avec deux banques publiques","type":"Presse rapportant une déclaration officielle primaire ; filiale confirmée par la page « About Us » de la RBI","date":"6 décembre 2024","localisation":"déclaration de politique monétaire du gouverneur ; liste des filiales","url":"https://www.business-standard.com/finance/news/rbi-innovation-hub-develops-mulehunter-ai-to-combat-mule-account-frauds-124120601042_1.html","justification":"Au 6 décembre 2024, le modèle est au stade du pilote avec deux banques publiques : expérimentation, barème 1. Deux réserves à déclarer. D’abord l’outil est développé par une filiale, le RBIH, ce qui est un cas limite au regard de la règle 1 ; la page « About Us » de la RBI le confirme comme filiale détenue à 100 %, ce qui justifie de le retenir. Ensuite l’outil est destiné aux banques et non à l’usage interne de la RBI : il atteste une capacité de développement, non un déploiement interne."},"Reserve Bank of India|P3|Experts IA dans les comités":{"code":1,"niveau":"preuve","document":"Comité FREE-AI, constitué par la RBI le 26 décembre 2024, réunissant huit membres dont des experts externes, et remettant son rapport le 13 août 2025","type":"Primaire — communiqué institutionnel","date":"13 août 2025 ; comité constitué le 26 décembre 2024","localisation":"communiqué de presse constitutif et communiqué de remise du rapport","url":"https://rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=61018","justification":"La RBI a constitué un comité d’experts sur l’IA, qui a travaillé huit mois et remis un rapport. Mais ce comité est consultatif et à durée déterminée, non une instance permanente intégrée à la gouvernance : experts consultés ad hoc, barème 1. Le barème 2 exige des experts intégrés dans les comités."},"Reserve Bank of India|P3|Programmes de formation":{"code":0,"niveau":"absence","document":"AUCUN PROGRAMME DE FORMATION À L’IA TROUVÉ. La RBI dispose de quatre établissements de formation permanents — Reserve Bank Staff College, College of Agricultural Banking, Enterprise Computing and Cybersecurity Training Institute, College of Supervisors — mais aucun document ne décrit de programme consacré à l’IA. Le rapport FREE-AI RECOMMANDE la création d’un institut de formation des régulateurs et superviseurs à l’IA : c’est une recommandation, non un dispositif en place.","type":"Absence de preuve","date":"2025","localisation":"page « About Us » ; pilier « Capacity » du FREE-AI","url":"https://rbi.org.in/Scripts/AboutUsDisplay.aspx","justification":"ABSENCE DE PREUVE. L’existence d’un institut consacré à l’informatique d’entreprise et à la cybersécurité ne vaut pas formation à l’IA, et une recommandation de créer un institut établit précisément qu’il n’existe pas. Codage identique à celui retenu pour la Banque de France, par cohérence."},"Reserve Bank of India|P3|Partenariats académiques":{"code":2,"niveau":"preuve","document":"Reserve Bank of India, « About Us » — établissements de formation, instituts financés et filiales détenues","type":"Primaire — page institutionnelle","date":"page consultée le 9 novembre 2026","localisation":"sections « Training Establishments », « Institutes Funded by the Bank », « Fully Owned Subsidiaries »","url":"https://rbi.org.in/Scripts/AboutUsDisplay.aspx","justification":"La RBI déclare l’Institute for Development and Research in Banking Technology (IDRBT) comme établissement de formation autonome, et finance intégralement le Centre for Advanced Financial Research and Learning (CAFRAL) et l’Indira Gandhi Institute of Development Research (IGIDR). Trois institutions de recherche adossées à l’institution, permanentes et financées : partenariats formalisés et actifs, barème 2. Réserve : aucune de ces institutions n’est déclarée comme portant spécifiquement sur l’IA."},"Reserve Bank of India|P3|Culture de données":{"code":1,"niveau":"inference","document":"Reserve Bank Information Technology Private Limited (ReBIT) et Indian Financial Technology and Allied Services (IFTAS), filiales détenues à 100 % ; pilier « Capacity » du cadre FREE-AI","type":"Primaire — page institutionnelle et rapport FREE-AI","date":"2025","localisation":"liste des filiales ; piliers du FREE-AI","url":"https://rbi.org.in/Scripts/AboutUsDisplay.aspx","justification":"Des filiales dédiées à l’informatique et aux services technologiques existent, et le cadre FREE-AI érige le renforcement des capacités en pilier. Mais aucune direction des données n’est documentée dans l’organigramme, et la page « About Us » ne mentionne ni analyse de données ni IA parmi les départements. Sensibilisation en cours : barème 1."},"Reserve Bank of India|P4|Qualité des données":{"code":0,"niveau":"absence","document":"AUCUN DISPOSITIF INTERNE TROUVÉ. Le cadre FREE-AI comporte un pilier « Protection » et prévoit une plateforme sectorielle de données adossée à AI Kosh, mais sans en attribuer la charge à la RBI ni décrire de cadre qualité pour ses propres données.","type":"Absence de preuve","date":"13 août 2025 ; comité constitué le 26 décembre 2024","localisation":"piliers du rapport FREE-AI","url":"https://rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=61018","justification":"ABSENCE DE PREUVE sous la lecture A. Le barème 1 exige une évaluation, même partielle, de la qualité des données : aucun document ne l’établit pour les données propres de la RBI."},"Reserve Bank of India|P4|Transparence et auditabilité":{"code":0,"niveau":"absence","document":"AUCUNE OBLIGATION INTERNE TROUVÉE. Le cadre FREE-AI impose aux entités régulées des audits internes et de tiers fondés sur le risque, et le principe « Understandable by Design ». Ces obligations ne sont pas adressées à la RBI.","type":"Absence de preuve pour l’usage interne","date":"13 août 2025 ; comité constitué le 26 décembre 2024","localisation":"pilier « Assurance » ; Sutra « Understandable by Design »","url":"https://rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=61018","justification":"ABSENCE DE PREUVE sous la lecture A."},"Reserve Bank of India|P4|Mécanismes de recours":{"code":0,"niveau":"absence","document":"AUCUN MÉCANISME INTERNE TROUVÉ. Le cadre FREE-AI impose aux entités régulées d’assurer « transparency, fairness, and grievance redressal », et prévoit un dispositif sectoriel de signalement des incidents, sans en attribuer la charge à la RBI.","type":"Absence de preuve pour l’usage interne","date":"13 août 2025 ; comité constitué le 26 décembre 2024","localisation":"pilier « Protection » ; dispositif sectoriel de signalement d’incidents","url":"https://rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=61018","justification":"ABSENCE DE PREUVE sous la lecture A. À noter que la RBI dispose par ailleurs d’un dispositif d’ombudsman bancaire, mais il ne porte pas sur les décisions assistées par l’IA de la RBI elle-même."},"Reserve Bank of India|P4|Lutte contre les biais":{"code":0,"niveau":"absence","document":"AUCUN PROTOCOLE INTERNE TROUVÉ. Le Sutra « Fairness and Equity » et le pilier « Protection » du FREE-AI portent sur les entités régulées.","type":"Absence de preuve pour l’usage interne","date":"13 août 2025 ; comité constitué le 26 décembre 2024","localisation":"Sutra « Fairness and Equity »","url":"https://rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=61018","justification":"ABSENCE DE PREUVE sous la lecture A."},"Banco Central do Brasil|P1|Stratégie IA formalisée":{"code":1,"niveau":"preuve","document":"Resolução BCB n° 408/2024, créant le Centro de Excelência de Ciência de Dados e Inteligência Artificial (CdE IA), « comunidade de práticas de natureza propositiva e consultiva »","type":"Primaire — acte normatif en vigueur","date":"publiée le 15 août 2024, en vigueur le 1er septembre 2024","localisation":"texte de la résolution ; lu via la note du cabinet Demarest du 19 août 2024, https://www.demarest.com.br/bc-cria-centro-de-excelencia-de-ciencia-de-dados-e-inteligencia-artificial/","url":"https://normativos.bcb.gov.br/","justification":"La résolution institue une structure permanente et lui confie la proposition de lignes directrices de gouvernance, mais elle crée un organe : ce n’est pas une stratégie IA publiée. Les lignes directrices sont à proposer, non adoptées. Document annoncé : barème 1. L’Agenda de Pesquisa 2026-2029 comporte par ailleurs une section 2.4.1 consacrée au big data et à l’IA, mais c’est un programme de recherche, non une stratégie d’adoption."},"Banco Central do Brasil|P1|Charte éthique IA":{"code":1,"niveau":"preuve","document":"Resolução BCB n° 408/2024, créant le Centro de Excelência de Ciência de Dados e Inteligência Artificial (CdE IA), « comunidade de práticas de natureza propositiva e consultiva »","type":"Primaire — acte normatif en vigueur","date":"publiée le 15 août 2024, en vigueur le 1er septembre 2024","localisation":"texte de la résolution ; lu via la note du cabinet Demarest du 19 août 2024, https://www.demarest.com.br/bc-cria-centro-de-excelencia-de-ciencia-de-dados-e-inteligencia-artificial/","url":"https://normativos.bcb.gov.br/","justification":"La résolution charge le CdE IA de proposer au Deinf, le département informatique, des lignes directrices de gouvernance pour un usage et un développement « éthiques et sûrs » des services logiciels d’IA et de science des données au sein de la banque. Une charte est donc en développement, par mandat réglementaire : barème 1. Le barème 2 exigerait une charte publiée et appliquée."},"Banco Central do Brasil|P1|Réglementation des algorithmes décisionnels":{"code":1,"niveau":"preuve","document":"Resolução BCB n° 408/2024, créant le Centro de Excelência de Ciência de Dados e Inteligência Artificial (CdE IA), « comunidade de práticas de natureza propositiva e consultiva »","type":"Primaire — acte normatif en vigueur","date":"publiée le 15 août 2024, en vigueur le 1er septembre 2024","localisation":"texte de la résolution ; lu via la note du cabinet Demarest du 19 août 2024, https://www.demarest.com.br/bc-cria-centro-de-excelencia-de-ciencia-de-dados-e-inteligencia-artificial/","url":"https://normativos.bcb.gov.br/","justification":"La résolution est en vigueur et organise le processus — qui propose quoi, à quel département, avec compte rendu annuel au comité GRC — mais les règles de fond applicables aux algorithmes restent à proposer. Réglementation en projet : barème 1, par application de la règle 5 qui interdit de traiter « en vigueur » ce qui n’est encore qu’un mandat de proposition."},"Banco Central do Brasil|P1|Publication des modèles":{"code":1,"niveau":"preuve","document":"Banco Central do Brasil, « Machine Learning Methods for Inflation Forecasting in Brazil », Trabalhos para Discussão n° 561 — série de documents de travail de l’institution","type":"Primaire — série de publications institutionnelle","date":"document de travail n° 561","localisation":"série Trabalhos para Discussão","url":"https://www.bcb.gov.br/pec/wps/ingl/wps561.pdf","justification":"L’institution publie dans sa propre série les méthodes d’apprentissage automatique qu’elle emploie pour la prévision d’inflation. Publication de descriptions méthodologiques, sans publication du code ni des jeux de données : barème 1."},"Banco Central do Brasil|P2|Infrastructure cloud/HPC":{"code":1,"niveau":"inference","document":"Banco Central do Brasil, « Agenda de Pesquisa 2026-2029 »","type":"Primaire — publication institutionnelle","date":"publiée en décembre 2025, horizon 2026-2029","localisation":"section 2.4.1, « Big Data, IA e Novas Ferramentas Analíticas »","url":"https://www.bcb.gov.br/content/publicacoes/agenda_pesquisa/202512/Agenda_de_Pesquisa_2025_2029.pdf","justification":"La section 2.4.1 mentionne l’infrastructure de données et les laboratoires d’innovation parmi les chantiers, et la section 1.2.4 indique que l’apprentissage automatique avec données massives est DÉJÀ UTILISÉ à la banque, ce qui suppose une infrastructure opérationnelle. Mais aucun document ne la décrit, ni ne l’établit comme dédiée à l’IA : barème 1, par inférence déclarée."},"Banco Central do Brasil|P2|Accès données temps réel":{"code":1,"niveau":"preuve","document":"Banco Central do Brasil, « Agenda de Pesquisa 2026-2029 »","type":"Primaire — publication institutionnelle","date":"publiée en décembre 2025, horizon 2026-2029","localisation":"section 1 (introduction), sections 1.1.3, 1.2.4 et 2.4.1","url":"https://www.bcb.gov.br/content/publicacoes/agenda_pesquisa/202512/Agenda_de_Pesquisa_2025_2029.pdf","justification":"L’agenda appelle à des bases plus granulaires, à haute fréquence et par agent (introduction), mentionne les bases d’enquêtes Focus et Firmus (1.1.3), relève que l’organisation systématique des microdonnées existantes reste un défi (1.2.4) et cite la détection de fraude parmi les usages (2.4.1). L’accès existe et porte sur des données fines, mais le caractère temps réel et la couverture complète des flux de paiements et de marchés ne sont pas établis : barème 1."},"Banco Central do Brasil|P2|Capacité de backtesting":{"code":1,"niveau":"preuve","document":"Banco Central do Brasil, Trabalhos para Discussão n° 561, « Machine Learning Methods for Inflation Forecasting in Brazil » ; Agenda de Pesquisa 2026-2029, section 1.2.4","type":"Primaire — publications institutionnelles","date":"document de travail n° 561 ; agenda 2025","localisation":"série Trabalhos para Discussão ; section 1.2.4 de l’agenda","url":"https://www.bcb.gov.br/pec/wps/ingl/wps561.pdf","justification":"Un document de travail de l’institution compare les performances de méthodes d’apprentissage automatique pour la prévision d’inflation, ce qui suppose une évaluation hors échantillon documentée. Mais il s’agit d’un exercice de recherche publié, non d’une procédure institutionnelle systématique : barème 1."},"Banco Central do Brasil|P2|Adoption de LLM/ML":{"code":2,"niveau":"preuve","document":"Banco Central do Brasil, « Agenda de Pesquisa 2026-2029 »","type":"Primaire — publication institutionnelle","date":"publiée en décembre 2025, horizon 2026-2029","localisation":"sections 1.2.4, 1.2.2 et 2.4.1","url":"https://www.bcb.gov.br/content/publicacoes/agenda_pesquisa/202512/Agenda_de_Pesquisa_2025_2029.pdf","justification":"La section 1.2.4 présente l’apprentissage automatique avec données massives comme une alternative aux modèles économétriques traditionnels DÉJÀ EN USAGE À LA BANQUE ; la section 1.2.2 cite les grands modèles de langage comme outils d’évaluation de la communication de banque centrale ; la section 2.4.1 couvre l’apprentissage automatique pour le score de crédit, la détection de fraude et la prévision. L’usage est établi par l’institution elle-même : barème 2."},"Banco Central do Brasil|P3|Experts IA dans les comités":{"code":2,"niveau":"preuve","document":"Resolução BCB n° 408/2024, créant le Centro de Excelência de Ciência de Dados e Inteligência Artificial (CdE IA), « comunidade de práticas de natureza propositiva e consultiva »","type":"Primaire — acte normatif en vigueur","date":"publiée le 15 août 2024, en vigueur le 1er septembre 2024","localisation":"texte de la résolution ; lu via la note du cabinet Demarest du 19 août 2024, https://www.demarest.com.br/bc-cria-centro-de-excelencia-de-ciencia-de-dados-e-inteligencia-artificial/","url":"https://normativos.bcb.gov.br/","justification":"La résolution institue une direction technique composée de deux agents expérimentés au plus PAR DOMAINE d’activité de la banque, désignés par les chefs de cabinet, avec un coordinateur et un suppléant nommés par le Deinf, des réunions mensuelles et un compte rendu annuel au comité GRC. Experts intégrés dans une instance permanente, par acte normatif : barème 2. C’est le dispositif le mieux documenté des cinq banques sur cet indicateur."},"Banco Central do Brasil|P3|Programmes de formation":{"code":1,"niveau":"preuve","document":"Resolução BCB n° 408/2024, créant le Centro de Excelência de Ciência de Dados e Inteligência Artificial (CdE IA), « comunidade de práticas de natureza propositiva e consultiva »","type":"Primaire — acte normatif en vigueur","date":"publiée le 15 août 2024, en vigueur le 1er septembre 2024","localisation":"texte de la résolution ; lu via la note du cabinet Demarest du 19 août 2024, https://www.demarest.com.br/bc-cria-centro-de-excelencia-de-ciencia-de-dados-e-inteligencia-artificial/","url":"https://normativos.bcb.gov.br/","justification":"La résolution charge le CdE IA de proposer au Depes, le département des personnes, de l’éducation, de la santé et de l’organisation, un PROGRAMME PERMANENT de formation en science des données et en intelligence artificielle. La fonction est donc institutionnalisée par un acte en vigueur, mais aucune session dispensée n’est documentée : barème 1, le barème 2 exigeant un programme structuré et récurrent effectif. Écart assumé avec la Banque de France et la RBI, codées 0 : aucune des deux ne dispose d’un mandat normatif équivalent."},"Banco Central do Brasil|P3|Partenariats académiques":{"code":1,"niveau":"preuve","document":"Banco Central do Brasil, « Agenda de Pesquisa 2026-2029 »","type":"Primaire — publication institutionnelle","date":"publiée en décembre 2025, horizon 2026-2029","localisation":"introduction et considérations finales","url":"https://www.bcb.gov.br/content/publicacoes/agenda_pesquisa/202512/Agenda_de_Pesquisa_2025_2029.pdf","justification":"L’agenda se donne pour but d’encourager la collaboration avec des chercheurs externes, des universités et d’autres institutions, et invite la communauté académique à co-construire des travaux avec la banque. Mais il s’agit d’une invitation et d’un cadre de dialogue, non d’un accord formalisé, et l’agenda ne décrit aucune procédure d’accès des chercheurs externes aux données. Partenariats informels : barème 1."},"Banco Central do Brasil|P3|Culture de données":{"code":2,"niveau":"preuve","document":"Resolução BCB n° 408/2024, créant le Centro de Excelência de Ciência de Dados e Inteligência Artificial (CdE IA), « comunidade de práticas de natureza propositiva e consultiva »","type":"Primaire — acte normatif en vigueur","date":"publiée le 15 août 2024, en vigueur le 1er septembre 2024","localisation":"texte de la résolution ; lu via la note du cabinet Demarest du 19 août 2024, https://www.demarest.com.br/bc-cria-centro-de-excelencia-de-ciencia-de-dados-e-inteligencia-artificial/","url":"https://normativos.bcb.gov.br/","justification":"Le CdE IA est une communauté de pratiques transversale, dont les membres sont désignés dans CHAQUE domaine d’activité de la banque et à laquelle tout agent peut s’adjoindre avec l’accord de son supérieur, avec réunions mensuelles et compte rendu annuel au comité GRC. La fonction est inscrite dans les processus de l’institution par acte normatif : barème 2."},"Banco Central do Brasil|P4|Qualité des données":{"code":0,"niveau":"absence","document":"AUCUN CADRE TROUVÉ. L’Agenda de Pesquisa 2026-2029 relève au contraire que l’organisation systématique des microdonnées existantes constitue un défi (section 1.2.4) et appelle à la construction de bases nouvelles.","type":"Absence de preuve","date":"publiée en décembre 2025, horizon 2026-2029","localisation":"sections 1 et 1.2.4, par leur contenu","url":"https://www.bcb.gov.br/content/publicacoes/agenda_pesquisa/202512/Agenda_de_Pesquisa_2025_2029.pdf","justification":"ABSENCE DE PREUVE, non absence établie. Le barème 1 exige une évaluation, même partielle, de la qualité des données : l’agenda identifie un problème d’organisation, ce qui n’est pas une évaluation de qualité. À reprendre si un cadre de gouvernance des données de la banque est publié."},"Banco Central do Brasil|P4|Transparence et auditabilité":{"code":1,"niveau":"preuve","document":"Banco Central do Brasil, « Agenda de Pesquisa 2026-2029 »","type":"Primaire — publication institutionnelle","date":"publiée en décembre 2025, horizon 2026-2029","localisation":"section 2.4.1","url":"https://www.bcb.gov.br/content/publicacoes/agenda_pesquisa/202512/Agenda_de_Pesquisa_2025_2029.pdf","justification":"La section 2.4.1 soulève explicitement la nécessité de maintenir ces méthodes interprétables et transparentes. Exigence énoncée, sans procédure d’audit décrite : mesures partielles, barème 1."},"Banco Central do Brasil|P4|Mécanismes de recours":{"code":0,"niveau":"absence","document":"AUCUN MÉCANISME TROUVÉ. Ni la Résolução BCB n° 408/2024 ni l’Agenda de Pesquisa 2026-2029 ne prévoient de voie de recours contre une décision assistée par l’IA.","type":"Absence de preuve","date":"publiée le 15 août 2024, en vigueur le 1er septembre 2024 ; publiée en décembre 2025, horizon 2026-2029","localisation":"silence des deux documents","url":"https://normativos.bcb.gov.br/","justification":"ABSENCE DE PREUVE. Le barème 1 exige un mécanisme en développement : rien ne l’atteste."},"Banco Central do Brasil|P4|Lutte contre les biais":{"code":1,"niveau":"preuve","document":"Resolução BCB n° 408/2024, créant le Centro de Excelência de Ciência de Dados e Inteligência Artificial (CdE IA), « comunidade de práticas de natureza propositiva e consultiva » ; Banco Central do Brasil, « Agenda de Pesquisa 2026-2029 »","type":"Primaire — acte normatif et publication institutionnelle","date":"publiée le 15 août 2024, en vigueur le 1er septembre 2024 ; publiée en décembre 2025, horizon 2026-2029","localisation":"mandat de lignes directrices « éthiques et sûres » ; section 2.4.1 de l’agenda","url":"https://normativos.bcb.gov.br/","justification":"Le mandat de lignes directrices éthiques et sûres et l’exigence d’interprétabilité couvrent la question des biais, mais aucun protocole de test ni de correction n’est décrit. Sensibilisation : barème 1."},"Banque centrale du Ghana|P1|Stratégie IA formalisée":{"code":0,"niveau":"absence","document":"AUCUNE STRATÉGIE TROUVÉE. Le rapport annuel 2024 ne contient aucune stratégie IA : l’intelligence artificielle n’apparaît que trois fois, dans la liste des sigles (p. v, « LLM » et « NLP »), à la section 4.7.3 pour un chatbot, et à la section 5.9.2 comme tendance de menace mondiale. Les règles IA de la Bank of Ghana pour le secteur financier datent d’octobre 2026, hors fenêtre.","type":"Absence de preuve","date":"exercice 2024, rapport publié en juillet 2025","localisation":"p. v ; sections 4.7.3 et 5.9.2","url":"https://www.bog.gov.gh/wp-content/uploads/2025/07/2024-Annual-Report-and-Financial-Statements-1.pdf","justification":"ABSENCE DE PREUVE sur la fenêtre 2024-2025. DÉCISION À PRENDRE PAR L’AUTEURE : si la fenêtre d’observation est déplacée pour intégrer les règles d’octobre 2026, ce code change — mais il faut alors recoder les cinq banques à la même date, conformément à la règle 2."},"Banque centrale du Ghana|P1|Charte éthique IA":{"code":0,"niveau":"absence","document":"AUCUNE CHARTE TROUVÉE. Le rapport annuel 2024 comporte un dispositif déontologique développé — Office of Ethics and Internal Investigations (p. 4-5), programmes de sensibilisation à l’éthique (p. 2), Senior Managers Ethics Regime Programme (p. vi) — mais aucun de ces dispositifs ne porte sur l’intelligence artificielle.","type":"Absence de preuve","date":"exercice 2024, rapport publié en juillet 2025","localisation":"p. 2, p. 4-5, p. vi, p. 35","url":"https://www.bog.gov.gh/wp-content/uploads/2025/07/2024-Annual-Report-and-Financial-Statements-1.pdf","justification":"ABSENCE DE PREUVE. L’existence d’une infrastructure déontologique générale ne vaut pas charte éthique IA : la règle 5 interdit l’interprétation extensive."},"Banque centrale du Ghana|P1|Réglementation des algorithmes décisionnels":{"code":0,"niveau":"absence","document":"AUCUN ENCADREMENT TROUVÉ. La surveillance des algorithmes est absente du rapport annuel 2024, et le risque de modèle n’est pas nommé : les tests de résistance de la section 4.5.1.2 (p. 26-27) couvrent les risques souverain, de crédit, de marché et de liquidité.","type":"Absence de preuve","date":"exercice 2024, rapport publié en juillet 2025","localisation":"sections 4.5.1.2 et 5.9 ; silence du reste","url":"https://www.bog.gov.gh/wp-content/uploads/2025/07/2024-Annual-Report-and-Financial-Statements-1.pdf","justification":"ABSENCE DE PREUVE sur la fenêtre. Même observation que pour la stratégie : les règles IA d’octobre 2026 trancheraient autrement."},"Banque centrale du Ghana|P1|Publication des modèles":{"code":1,"niveau":"preuve","document":"Bank of Ghana, « Annual Report and Financial Statements 2024 », section 4.7 « FinTech and Innovation » et chapitre 5 « Internal Developments »","type":"Primaire — rapport annuel","date":"exercice 2024, rapport publié en juillet 2025","localisation":"section 4.7.3","url":"https://www.bog.gov.gh/wp-content/uploads/2025/07/2024-Annual-Report-and-Financial-Statements-1.pdf","justification":"La section 4.7.3 décrit publiquement le chatbot, son architecture — un grand modèle de langage développé localement par Npontu Technologies —, ses fonctions d’analyse de sentiment et de veille des réseaux sociaux, et son recours au moissonnage web et au traitement du langage naturel. Description publiée, sans code ni données : barème 1."},"Banque centrale du Ghana|P2|Infrastructure cloud/HPC":{"code":1,"niveau":"inference","document":"Bank of Ghana, « Annual Report and Financial Statements 2024 », section 4.7 « FinTech and Innovation » et chapitre 5 « Internal Developments »","type":"Primaire — rapport annuel","date":"exercice 2024, rapport publié en juillet 2025","localisation":"sections 5.9.1 et 5.9.2 ; p. 4-5 et p. 9","url":"https://www.bog.gov.gh/wp-content/uploads/2025/07/2024-Annual-Report-and-Financial-Statements-1.pdf","justification":"Un département Information & Communication Technology existe (p. 4-5), ainsi qu’un Information Security Office ; la section 5.9.1 mentionne un Cyber Recovery Vault et une solution SharePoint hybride, et la section 1.5.4.5 (p. 9) la norme ISO 27001:2013. Le cloud n’est jamais nommé et aucune infrastructure dédiée à l’IA n’est décrite, mais le développement d’un chatbot sur architecture LLM suppose des moyens de calcul : barème 1, par inférence déclarée."},"Banque centrale du Ghana|P2|Accès données temps réel":{"code":1,"niveau":"preuve","document":"Bank of Ghana, « Annual Report and Financial Statements 2024 », section 4.7 « FinTech and Innovation » et chapitre 5 « Internal Developments »","type":"Primaire — rapport annuel","date":"exercice 2024, rapport publié en juillet 2025","localisation":"section 4.7.3 ; sections 4.2.1.7 et 4.3.2.6","url":"https://www.bog.gov.gh/wp-content/uploads/2025/07/2024-Annual-Report-and-Financial-Statements-1.pdf","justification":"La section 4.7.3 décrit une « real-time monitoring of social media and online platforms » reposant sur des outils de moissonnage web : il s’agit bien d’un flux de données en temps réel, mais externe et non financier. S’y ajoutent le partage de données par API avec consentement du client (section 4.2.1.7, p. 23) et la plateforme centralisée de change FEBMS, obligatoire depuis le 1er août 2024 (section 4.3.2.6, p. 24). Accès partiel : barème 1."},"Banque centrale du Ghana|P2|Capacité de backtesting":{"code":0,"niveau":"absence","document":"AUCUNE CAPACITÉ TROUVÉE. La section 4.7.3 ne donne ni date de mise en service, ni nombre d’utilisateurs, ni chiffre de performance pour le chatbot. La seule mention de modèles challengers figure à la section 6.10.3, où le Collège des superviseurs de la ZMAO ENCOURAGE ses membres à développer des modèles challengers de pertes de crédit attendues : c’est une recommandation régionale, non une pratique de la Bank of Ghana.","type":"Absence de preuve","date":"exercice 2024, rapport publié en juillet 2025","localisation":"sections 4.7.3 et 6.10.3","url":"https://www.bog.gov.gh/wp-content/uploads/2025/07/2024-Annual-Report-and-Financial-Statements-1.pdf","justification":"ABSENCE DE PREUVE. Le barème 1 exige une évaluation, même ponctuelle : le rapport n’en publie aucune."},"Banque centrale du Ghana|P2|Adoption de LLM/ML":{"code":1,"niveau":"preuve","document":"Bank of Ghana, « Annual Report and Financial Statements 2024 », section 4.7 « FinTech and Innovation » et chapitre 5 « Internal Developments »","type":"Primaire — rapport annuel","date":"exercice 2024, rapport publié en juillet 2025","localisation":"section 4.7.3","url":"https://www.bog.gov.gh/wp-content/uploads/2025/07/2024-Annual-Report-and-Financial-Statements-1.pdf","justification":"La Bank of Ghana a « designed and developed an intelligent chatbot » avec Npontu Technologies, sur un grand modèle de langage développé localement, incluant un AI-powered Complaint Management System. Mais la section ne dit pas si le système est déployé, en pilote ou encore en développement, et ne donne ni date de mise en service ni effectif d’utilisateurs. Conception et développement établis, mise en production non établie : barème 1, par stricte application de la règle 4."},"Banque centrale du Ghana|P3|Experts IA dans les comités":{"code":0,"niveau":"absence","document":"AUCUN COMITÉ IA TROUVÉ. L’organigramme (p. 4-5) et la liste des comités du conseil (p. 8-9) comportent un Cyber and Information Security Committee, un Risk Committee, un Information Security Office et un FinTech and Innovation Office, mais aucune instance chargée de l’intelligence artificielle, des données ou de la surveillance des algorithmes.","type":"Absence de preuve","date":"exercice 2024, rapport publié en juillet 2025","localisation":"p. 4-5 et p. 8-9","url":"https://www.bog.gov.gh/wp-content/uploads/2025/07/2024-Annual-Report-and-Financial-Statements-1.pdf","justification":"ABSENCE DE PREUVE. Deux membres externes du comité de politique monétaire sont professeurs (p. 9), mais c’est une composition, non une expertise IA intégrée."},"Banque centrale du Ghana|P3|Programmes de formation":{"code":0,"niveau":"absence","document":"AUCUNE FORMATION À L’IA TROUVÉE. Le rapport décrit un Human Capital Support Project avec « a series of targeted training sessions » (p. 2), un Human Resource & Capacity Development Department (p. 4-5), et la section 5.2.2 avec le tableau 5.2 rapportant 6 672 participations à des formations — mais aucune ne porte sur l’intelligence artificielle ni sur les données. Le WAIFEM a formé 1 517 agents publics de la région (section 6.10.4), également hors IA.","type":"Absence de preuve","date":"exercice 2024, rapport publié en juillet 2025","localisation":"p. 2 ; section 5.2.2 et tableau 5.2 ; section 6.10.4","url":"https://www.bog.gov.gh/wp-content/uploads/2025/07/2024-Annual-Report-and-Financial-Statements-1.pdf","justification":"ABSENCE DE PREUVE. Un dispositif de formation substantiel existe, mais le barème porte sur la formation à l’IA, et aucune session n’est documentée."},"Banque centrale du Ghana|P3|Partenariats académiques":{"code":0,"niveau":"absence","document":"AUCUN PARTENARIAT ACADÉMIQUE TROUVÉ. Le sigle WAIFEM figure dans la liste des abréviations (p. vi) sans développement ; le protocole d’accord avec FSD Africa (p. 26) est un partenariat de développement ; le 3i Africa Summit de mai 2024 (section 4.7.1) associe Development Bank Ghana et une filiale de la Monetary Authority of Singapore ; la collaboration avec Npontu Technologies (section 4.7.3) est industrielle.","type":"Absence de preuve","date":"exercice 2024, rapport publié en juillet 2025","localisation":"p. vi, p. 26 ; sections 4.7.1 et 4.7.3","url":"https://www.bog.gov.gh/wp-content/uploads/2025/07/2024-Annual-Report-and-Financial-Statements-1.pdf","justification":"ABSENCE DE PREUVE pour le volet académique. À noter : le seul partenariat technologique documenté, avec une entreprise ghanéenne d’IA, est un fait significatif pour l’essai — mais il ne relève pas de cet indicateur."},"Banque centrale du Ghana|P3|Culture de données":{"code":1,"niveau":"preuve","document":"Bank of Ghana, « Annual Report and Financial Statements 2024 », section 4.7 « FinTech and Innovation » et chapitre 5 « Internal Developments »","type":"Primaire — rapport annuel","date":"exercice 2024, rapport publié en juillet 2025","localisation":"section 5.9.1 ; sections 6.5 et 6.8","url":"https://www.bog.gov.gh/wp-content/uploads/2025/07/2024-Annual-Report-and-Financial-Statements-1.pdf","justification":"La section 5.9.1 évoque la « data integrity posture » de la banque à propos du Cyber Recovery Vault ; la section 6.5 rapporte la participation à l’assemblée de l’AACB sur le thème « Using Big Data Analytics, Interest Rates, and Artificial Intelligence in the Fight against Inflation » ; la section 6.8 (AFRACA) insiste sur le développement de données fiables. Sensibilisation en cours : barème 1. L’analyse de données comme discipline est absente du rapport."},"Banque centrale du Ghana|P4|Qualité des données":{"code":0,"niveau":"absence","document":"AUCUN CADRE TROUVÉ. La gouvernance et la qualité des données sont absentes du rapport annuel 2024, et aucun département ni comité n’en est chargé.","type":"Absence de preuve","date":"exercice 2024, rapport publié en juillet 2025","localisation":"p. 4-5 et p. 8-9 ; silence du document","url":"https://www.bog.gov.gh/wp-content/uploads/2025/07/2024-Annual-Report-and-Financial-Statements-1.pdf","justification":"ABSENCE DE PREUVE, non absence établie."},"Banque centrale du Ghana|P4|Transparence et auditabilité":{"code":0,"niveau":"absence","document":"AUCUNE MESURE TROUVÉE. La surveillance des algorithmes est absente, le risque de modèle n’est pas nommé, et aucune procédure d’audit de modèle n’est décrite.","type":"Absence de preuve","date":"exercice 2024, rapport publié en juillet 2025","localisation":"silence du document","url":"https://www.bog.gov.gh/wp-content/uploads/2025/07/2024-Annual-Report-and-Financial-Statements-1.pdf","justification":"ABSENCE DE PREUVE. La section 4.7.3 ne publie aucun élément d’auditabilité du chatbot : ni évaluation, ni limites, ni supervision humaine."},"Banque centrale du Ghana|P4|Mécanismes de recours":{"code":1,"niveau":"preuve","document":"Bank of Ghana, « Annual Report and Financial Statements 2024 », section 4.7 « FinTech and Innovation » et chapitre 5 « Internal Developments »","type":"Primaire — rapport annuel","date":"exercice 2024, rapport publié en juillet 2025","localisation":"section 4.7.3","url":"https://www.bog.gov.gh/wp-content/uploads/2025/07/2024-Annual-Report-and-Financial-Statements-1.pdf","justification":"La section 4.7.3 décrit un « AI-powered Complaint Management System designed to enhance the Bank’s responsiveness to customer complaints ». Un canal de traitement des réclamations a donc été conçu et développé, mais son entrée en service n’est pas établie : barème 1. RÉSERVE À DÉCLARER : ce dispositif traite les réclamations AVEC de l’IA ; il n’organise pas le recours CONTRE une décision prise par l’IA. Le libellé de l’indicateur ne dit pas contre quoi le recours doit être ouvert — ambiguïté à corriger dans la grille."},"Banque centrale du Ghana|P4|Lutte contre les biais":{"code":0,"niveau":"absence","document":"AUCUN DISPOSITIF TROUVÉ. Les biais sont absents du rapport annuel 2024. La Persons with Disabilities Directive (p. 2 et p. 22) vise un accès « devoid of discrimination » aux services financiers, mais ne porte pas sur les biais algorithmiques.","type":"Absence de preuve","date":"exercice 2024, rapport publié en juillet 2025","localisation":"p. 2 et p. 22 ; silence du reste","url":"https://www.bog.gov.gh/wp-content/uploads/2025/07/2024-Annual-Report-and-Financial-Statements-1.pdf","justification":"ABSENCE DE PREUVE. Le chatbot repose sur un grand modèle de langage et conduit de l’analyse de sentiment sans qu’aucun test de biais ne soit mentionné."},"BCEAO (UEMOA)|P1|Stratégie IA formalisée":{"code":1,"niveau":"preuve","document":"BCEAO, « Clôture de la Conférence sur l’Intelligence Artificielle : les Gouverneurs des Banques Centrales africaines appellent à une adoption responsable et concertée » — création en juillet 2024 du Comité de Réflexion sur l’Intelligence Artificielle (CRIA), chargé de proposer une feuille de route de déploiement de l’IA","type":"Primaire — communiqué institutionnel","date":"comité créé en juillet 2024, rapporté le 21 mai 2025","localisation":"paragraphe consacré au CRIA","url":"https://www.bceao.int/fr/content/cloture-de-la-conference-sur-lintelligence-artificielle-les-gouverneurs-des-banques","justification":"Le CRIA a pour mandat de PROPOSER une feuille de route de déploiement de l’IA, en évaluant les bénéfices attendus et les prérequis d’une intégration réussie. Le Mot du Gouverneur du rapport annuel 2025 (p. X-XI) évoque une intégration progressive et maîtrisée de l’IA dans les activités des banques centrales. Feuille de route annoncée, non publiée : barème 1, ce qui est littéralement le « document en consultation ou annoncé » du barème."},"BCEAO (UEMOA)|P1|Charte éthique IA":{"code":0,"niveau":"absence","document":"AUCUNE CHARTE TROUVÉE. L’usage « éthique et sécurisé » de l’IA et le « cadre de gouvernance de données » figurent à l’encadré 1 du rapport annuel 2025 (p. XXXVI) mais comme CONCLUSIONS DE LA TABLE RONDE de la conférence de Dakar, non comme dispositifs adoptés par la BCEAO.","type":"Absence de preuve","date":"exercice 2025, rapport publié en juillet 2026","localisation":"encadré 1, p. XXXVI-XXXVII","url":"https://ns2.bceao.int/sites/default/files/2026-07/Rapport_Annuel_2025_BCEAO_vf.pdf","justification":"ABSENCE DE PREUVE. La distinction est décisive et vaut pour plusieurs cellules de la BCEAO : l’encadré 1 restitue les recommandations d’une conférence que la BCEAO a accueillie, et la règle 1 interdit de les lire comme des engagements de l’institution. Un précis du COFEB porte par ailleurs sur « l’Intelligence Artificielle : enjeux économiques et défis éthiques et réglementaires » (section 8.2.1) : c’est une publication de recherche, non une charte."},"BCEAO (UEMOA)|P1|Réglementation des algorithmes décisionnels":{"code":0,"niveau":"absence","document":"AUCUN ENCADREMENT TROUVÉ. Le rapport annuel 2025 ne mentionne ni surveillance des algorithmes ni transparence des modèles, et aucun comité ni direction n’est désigné comme responsable de l’IA ou des données. La Direction du Développement des Solutions Digitales, créée en 2025, porte la gouvernance des PROJETS informatiques et l’accompagnement de la digitalisation des métiers.","type":"Absence de preuve","date":"exercice 2025, rapport publié en juillet 2026","localisation":"chapitre « Administration » ; liste des directions","url":"https://ns2.bceao.int/sites/default/files/2026-07/Rapport_Annuel_2025_BCEAO_vf.pdf","justification":"ABSENCE DE PREUVE. La gouvernance de projets informatiques n’est pas un encadrement des algorithmes décisionnels. Le programme d’audit 2026 du Comité d’Audit intègre les risques émergents, mais au titre de la cybersécurité."},"BCEAO (UEMOA)|P1|Publication des modèles":{"code":1,"niveau":"preuve","document":"BCEAO, « Rapport annuel 2025 »","type":"Primaire — rapport annuel","date":"exercice 2025, rapport publié en juillet 2026","localisation":"sections 8.2.1, 8.2.3 et 8.3","url":"https://ns2.bceao.int/sites/default/files/2026-07/Rapport_Annuel_2025_BCEAO_vf.pdf","justification":"La section 8.2.3 décrit un modèle de prévision d’inflation intégrant l’apprentissage automatique profond ; la section 8.3 inscrit la prévision par apprentissage automatique et IA aux perspectives de recherche ; le COFEB publie la Revue Économique et Monétaire, des Précis et des Documents d’Études et de Recherche (section 8.2.1). Les méthodes sont donc décrites publiquement, sans publication de code ni de données : barème 1."},"BCEAO (UEMOA)|P2|Infrastructure cloud/HPC":{"code":1,"niveau":"preuve","document":"BCEAO, « Rapport annuel 2025 »","type":"Primaire — rapport annuel","date":"exercice 2025, rapport publié en juillet 2026","localisation":"section 7.4 ; section 7.6.2","url":"https://ns2.bceao.int/sites/default/files/2026-07/Rapport_Annuel_2025_BCEAO_vf.pdf","justification":"La section 7.4 rapporte la première phase d’une PLATEFORME RÉSILIENTE DE TRAITEMENT DE DONNÉES répartie sur le Siège, Dakar et Abidjan, le renouvellement du parc micro-informatique, la numérisation centralisée des chèques et la migration vers la norme ISO 20022 ; la section 7.6.2 ajoute une plateforme e-banking automatisée et un système de management de la continuité d’activité. Déploiement en cours, non établi comme dédié à l’IA : barème 1. Le cloud est absent du rapport ; seul le sigle CTI, Centres de Traitement Informatique, apparaît (p. VIII)."},"BCEAO (UEMOA)|P2|Accès données temps réel":{"code":1,"niveau":"preuve","document":"BCEAO, « Rapport annuel 2025 »","type":"Primaire — rapport annuel","date":"exercice 2025, rapport publié en juillet 2026","localisation":"chapitre III ; section 7.4 ; Direction des Systèmes et Moyens de Paiement","url":"https://ns2.bceao.int/sites/default/files/2026-07/Rapport_Annuel_2025_BCEAO_vf.pdf","justification":"Le Bureau d’Information sur le Crédit recense 19 747 111 clients au 31 décembre 2025 ; une nouvelle application de suivi des institutions de microfinance offre aux autorités de supervision un outil de suivi centralisé et des statistiques sectorielles ; la numérisation centralisée des chèques et la migration ISO 20022 portent sur les flux de paiement, et une Direction des Systèmes et Moyens de Paiement existe. L’accès est large et granulaire, mais son caractère temps réel n’est pas établi : barème 1."},"BCEAO (UEMOA)|P2|Capacité de backtesting":{"code":1,"niveau":"inference","document":"BCEAO, « Rapport annuel 2025 »","type":"Primaire — rapport annuel","date":"exercice 2025, rapport publié en juillet 2026","localisation":"sections 8.2.3 et 8.3","url":"https://ns2.bceao.int/sites/default/files/2026-07/Rapport_Annuel_2025_BCEAO_vf.pdf","justification":"La section 8.2.3 présente un outil de prévision d’inflation intégrant l’apprentissage automatique profond, et la section 8.3 inscrit la prévision par ces méthodes aux perspectives de recherche : un modèle de prévision en usage suppose une évaluation de performance. Mais aucune procédure systématique et documentée n’est décrite, et aucun chiffre n’est publié : barème 1, par inférence déclarée."},"BCEAO (UEMOA)|P2|Adoption de LLM/ML":{"code":1,"niveau":"preuve","document":"BCEAO, « Rapport annuel 2025 »","type":"Primaire — rapport annuel","date":"exercice 2025, rapport publié en juillet 2026","localisation":"section 8.2.3","url":"https://ns2.bceao.int/sites/default/files/2026-07/Rapport_Annuel_2025_BCEAO_vf.pdf","justification":"La section 8.2.3 établit qu’un modèle de prévision d’inflation de la BCEAO INTÈGRE l’apprentissage automatique profond. C’est le seul des cinq usages d’apprentissage automatique documentés dans une fonction de cœur de métier — la prévision d’inflation — et non dans une fonction support. Le rapport ne dit toutefois pas si l’outil est en production ou au stade de la recherche : barème 1 retenu par application de la règle 4. À VÉRIFIER PAR L’AUTEURE dans la section 8.2.3 du rapport : si le modèle alimente l’exercice régulier de prévision, le code passe à 2."},"BCEAO (UEMOA)|P3|Experts IA dans les comités":{"code":1,"niveau":"preuve","document":"BCEAO, « Clôture de la Conférence sur l’Intelligence Artificielle : les Gouverneurs des Banques Centrales africaines appellent à une adoption responsable et concertée » — création en juillet 2024 du Comité de Réflexion sur l’Intelligence Artificielle (CRIA), chargé de proposer une feuille de route de déploiement de l’IA","type":"Primaire — communiqué institutionnel","date":"juillet 2024","localisation":"paragraphe consacré au CRIA","url":"https://www.bceao.int/fr/content/cloture-de-la-conference-sur-lintelligence-artificielle-les-gouverneurs-des-banques","justification":"Le CRIA est une instance propre de la BCEAO consacrée à l’intelligence artificielle, créée en juillet 2024. Mais le communiqué n’en précise pas la composition, et le rapport annuel 2025 ne le mentionne pas, ce qui interdit de conclure à une intégration permanente d’experts : experts consultés ad hoc, barème 1. Le Comité scientifique du COFEB, douze membres pour 2025-2028, oriente la formation et la recherche mais n’est pas dédié à l’IA."},"BCEAO (UEMOA)|P3|Programmes de formation":{"code":1,"niveau":"preuve","document":"BCEAO, « Rapport annuel 2025 »","type":"Primaire — rapport annuel","date":"exercice 2025, rapport publié en juillet 2026","localisation":"section 8.1.1","url":"https://ns2.bceao.int/sites/default/files/2026-07/Rapport_Annuel_2025_BCEAO_vf.pdf","justification":"La section 8.1.1 documente un séminaire « INTELLIGENCE ARTIFICIELLE POUR LES MANAGERS » effectivement dispensé, au sein d’un dispositif de formation institutionnel de 3 092 participations pour 119 sessions, dont 1 678 agents au titre du plan de formation. La BCEAO est la SEULE des cinq banques pour laquelle une formation à l’IA réellement dispensée est documentée. Mais une session ne constitue pas un programme structuré et récurrent : barème 1, le barème 2 exigeant la récurrence."},"BCEAO (UEMOA)|P3|Partenariats académiques":{"code":2,"niveau":"preuve","document":"BCEAO, « Rapport annuel 2025 »","type":"Primaire — rapport annuel","date":"exercice 2025, rapport publié en juillet 2026","localisation":"chapitre « Formation, recherche et partenariats », sections 8.1 et 8.2","url":"https://ns2.bceao.int/sites/default/files/2026-07/Rapport_Annuel_2025_BCEAO_vf.pdf","justification":"Partenariats formalisés et actifs, en nombre : le COFEB encadre un Master en Finances et Gestion Bancaire ACCRÉDITÉ PAR LE CAMES, dont les 46e, 47e et 48e promotions sont suivies ; le Gouverneur PRÉSIDE LE CONSEIL D’ADMINISTRATION DU CESAG ; l’ENSEA d’Abidjan assure une formation certifiante en réglementation bancaire et modélisation bâloise et conduit une étude sur la volatilité du pétrole ; la FERDI conduit une étude sur la compétitivité. S’y ajoutent HEC Paris, HEC Montréal, l’Université Paris 2 Panthéon-Assas, l’Institut Polytechnique de Paris, l’Université d’Ottawa, l’Université Paris Nanterre, l’École Polytechnique, l’Université de Warwick, le CREA de Nairobi et la Banque de France. Barème 2 sans ambiguïté."},"BCEAO (UEMOA)|P3|Culture de données":{"code":1,"niveau":"preuve","document":"BCEAO, « Rapport annuel 2025 »","type":"Primaire — rapport annuel","date":"exercice 2025, rapport publié en juillet 2026","localisation":"chapitre « Administration » ; sections 7.4 et 8.1","url":"https://ns2.bceao.int/sites/default/files/2026-07/Rapport_Annuel_2025_BCEAO_vf.pdf","justification":"Une Direction du Développement des Solutions Digitales a été CRÉÉE EN 2025 pour la gouvernance des projets informatiques et l’accompagnement de la digitalisation des métiers ; il existe une Direction des Statistiques, une Direction des Innovations Financières et un Laboratoire d’Innovation Financière (LIF-BCEAO) ; un parcours certifiant en finance digitale est à sa troisième édition, et une formation à la mise en œuvre de COBIT 2019 a été dispensée. Mais aucun comité ni direction n’est chargé des données ou de leur gouvernance, et le « cadre de gouvernance de données » n’apparaît qu’en recommandation de conférence. Sensibilisation en cours : barème 1."},"BCEAO (UEMOA)|P4|Qualité des données":{"code":0,"niveau":"absence","document":"AUCUN CADRE TROUVÉ. La qualité des données est absente du rapport annuel 2025. Une « Politique Qualité » existe (p. X et encadré 8) mais sans lien avec les données. Le « cadre de gouvernance de données » de l’encadré 1 (p. XXXVI) est une recommandation de la table ronde de Dakar, présentée comme un PRÉREQUIS à l’usage de l’IA — donc comme ce qui manque.","type":"Absence de preuve","date":"exercice 2025, rapport publié en juillet 2026","localisation":"p. X, encadré 1 p. XXXVI, encadré 8","url":"https://ns2.bceao.int/sites/default/files/2026-07/Rapport_Annuel_2025_BCEAO_vf.pdf","justification":"ABSENCE DE PREUVE, non absence établie. Le document va plus loin : il désigne ce cadre comme un prérequis non encore satisfait."},"BCEAO (UEMOA)|P4|Transparence et auditabilité":{"code":0,"niveau":"absence","document":"AUCUNE MESURE TROUVÉE. La transparence des modèles est absente du rapport annuel 2025 ; le mot « transparence » n’y figure qu’à propos de la gouvernance financière internationale. Le programme d’audit 2026 du Comité d’Audit intègre les risques émergents, en particulier la cybersécurité, non l’audit de modèles.","type":"Absence de preuve","date":"exercice 2025, rapport publié en juillet 2026","localisation":"Temps forts p. XXXII-XXXIII ; Comité d’Audit p. XXVIII-XXIX","url":"https://ns2.bceao.int/sites/default/files/2026-07/Rapport_Annuel_2025_BCEAO_vf.pdf","justification":"ABSENCE DE PREUVE. Le modèle de prévision d’inflation intégrant l’apprentissage profond (section 8.2.3) n’est accompagné d’aucun élément d’auditabilité."},"BCEAO (UEMOA)|P4|Mécanismes de recours":{"code":0,"niveau":"absence","document":"AUCUN MÉCANISME TROUVÉ pour les décisions assistées par l’IA.","type":"Absence de preuve","date":"exercice 2025, rapport publié en juillet 2026","localisation":"silence du document","url":"https://ns2.bceao.int/sites/default/files/2026-07/Rapport_Annuel_2025_BCEAO_vf.pdf","justification":"ABSENCE DE PREUVE."},"BCEAO (UEMOA)|P4|Lutte contre les biais":{"code":1,"niveau":"preuve","document":"BCEAO, « Rapport annuel 2025 »","type":"Primaire — rapport annuel","date":"exercice 2025, rapport publié en juillet 2026","localisation":"section 8.2.1 ; Temps forts p. XXXIV","url":"https://ns2.bceao.int/sites/default/files/2026-07/Rapport_Annuel_2025_BCEAO_vf.pdf","justification":"Le COFEB a publié un Précis consacré à « l’Intelligence Artificielle : enjeux économiques et défis éthiques et réglementaires » (section 8.2.1), et les Temps forts rapportent les « défis éthiques liés à l’Intelligence Artificielle » (p. XXXIV). L’institution produit donc, par son centre de formation, une sensibilisation documentée aux enjeux éthiques de l’IA. Mais le mot « biais » est absent du rapport et aucun protocole de test n’est décrit : barème 1."}},"max_pilier":8,"bornes":{"basse":0.45,"haute":0.7},"libelles_niveau":{"preuve":"preuve","inference":"inférence","absence":"absence de preuve"},"ponderation":[{"ligne":"estimation","mesure":"A","document":"BRI-CGRM (2025)","dictionnaire":"noyau","P1":"0.2980","P2":"0.1333","P3":"0.1961","P4":"0.3725"},{"ligne":"estimation","mesure":"A","document":"BRI-CGRM (2025)","dictionnaire":"étendu","P1":"0.3013","P2":"0.2009","P3":"0.1218","P4":"0.3761"},{"ligne":"estimation","mesure":"A","document":"IFC n° 18 (2025)","dictionnaire":"noyau","P1":"0.0720","P2":"0.5227","P3":"0.1591","P4":"0.2462"},{"ligne":"estimation","mesure":"A","document":"IFC n° 18 (2025)","dictionnaire":"étendu","P1":"0.1436","P2":"0.4333","P3":"0.1487","P4":"0.2744"},{"ligne":"estimation","mesure":"C","document":"BRI-CGRM (2025)","dictionnaire":"noyau","P1":"0.2973","P2":"0.1502","P3":"0.1878","P4":"0.3646"},{"ligne":"estimation","mesure":"C","document":"BRI-CGRM (2025)","dictionnaire":"étendu","P1":"0.2923","P2":"0.2172","P3":"0.1168","P4":"0.3737"},{"ligne":"estimation","mesure":"C","document":"IFC n° 18 (2025)","dictionnaire":"noyau","P1":"0.1022","P2":"0.4453","P3":"0.1686","P4":"0.2840"},{"ligne":"estimation","mesure":"C","document":"IFC n° 18 (2025)","dictionnaire":"étendu","P1":"0.1700","P2":"0.3948","P3":"0.1507","P4":"0.2845"},{"ligne":"moyenne des 8 estimations","mesure":"","document":"","dictionnaire":"","P1":"0.2096","P2":"0.3122","P3":"0.1562","P4":"0.3220"},{"ligne":"poids retenus (plus fort reste)","mesure":"","document":"","dictionnaire":"","P1":"0.21","P2":"0.31","P3":"0.16","P4":"0.32"}],"enquete":{"P1|Stratégie IA formalisée":{"question":"L'institution a-t-elle publié une stratégie consacrée à l'intelligence artificielle, ou l'IA figure-t-elle comme axe d'un plan stratégique ? Est-elle annoncée, en consultation, ou en cours d'exécution ?","ou":"Plan stratégique pluriannuel ; rapport annuel, chapitre gouvernance ou transformation numérique ; discours du gouverneur ; communiqués du conseil","termes":"{inst} stratégie intelligence artificielle | {inst} artificial intelligence strategy | {inst} plan stratégique numérique | {inst} digital transformation roadmap"},"P1|Charte éthique IA":{"question":"Existe-t-il un document posant des principes éthiques pour l'usage de l'IA — équité, responsabilité, supervision humaine ? Est-il publié, ou seulement annoncé ?","ou":"Charte ou code de conduite ; politique interne publiée ; annexes du rapport annuel ; pages « gouvernance » du site","termes":"{inst} charte éthique intelligence artificielle | {inst} AI ethics principles | {inst} responsible AI framework | {inst} code de conduite algorithmes"},"P1|Réglementation des algorithmes décisionnels":{"question":"L'institution a-t-elle édicté un texte encadrant les décisions prises ou assistées par algorithme, pour elle-même ou pour les établissements qu'elle supervise ? Est-il en projet ou en vigueur ?","ou":"Circulaires et instructions aux banques ; textes réglementaires ; documents de consultation ; rapports de supervision","termes":"{inst} circulaire algorithme | {inst} instruction intelligence artificielle banques | {inst} algorithmic decision regulation | {inst} supervisory expectations AI"},"P1|Publication des modèles":{"question":"Les modèles utilisés — prévision, détection, notation — sont-ils documentés publiquement ? S'agit-il de simples descriptions, ou du code et des données ?","ou":"Documents de travail et working papers ; dépôts de code publics ; annexes méthodologiques des publications économiques","termes":"{inst} working paper machine learning | {inst} documentation modèle prévision | {inst} github | {inst} model documentation nowcasting"},"P2|Infrastructure cloud/HPC":{"question":"L'institution dispose-t-elle d'une infrastructure de calcul adaptée à l'IA — cloud souverain, calcul haute performance, plateforme de données ? Est-elle en déploiement ou opérationnelle ?","ou":"Rapport annuel, chapitre systèmes d'information ; appels d'offres et marchés publics ; rapports d'activité des directions informatiques","termes":"{inst} cloud infrastructure données | {inst} appel d'offres plateforme données | {inst} high performance computing | {inst} data lake central bank"},"P2|Accès données temps réel":{"question":"L'institution accède-t-elle en continu à des flux de données — systèmes de paiement, marchés, supervision ? L'accès couvre-t-il certains flux seulement, ou l'ensemble ?","ou":"Rapport sur les systèmes de paiement ; documentation des entrepôts de données ; rapports de stabilité financière","termes":"{inst} données temps réel paiements | {inst} real-time payment data | {inst} entrepôt de données supervision | {inst} data warehouse reporting"},"P2|Capacité de backtesting":{"question":"Les modèles sont-ils réévalués a posteriori sur données réelles ? L'exercice est-il ponctuel ou systématique et documenté ?","ou":"Rapports de stabilité financière ; notes méthodologiques des prévisions ; rapports d'audit interne","termes":"{inst} backtesting modèle | {inst} évaluation ex post prévisions | {inst} model validation framework | {inst} forecast evaluation"},"P2|Adoption de LLM/ML":{"question":"Des techniques d'apprentissage automatique ou des modèles de langue sont-ils employés ? Au stade du pilote, ou en production ?","ou":"Rapport annuel ; discours et interventions ; publications de recherche ; communiqués sur l'innovation","termes":"{inst} machine learning | {inst} apprentissage automatique | {inst} large language model | {inst} pilote intelligence artificielle"},"P3|Experts IA dans les comités":{"question":"Des compétences en IA ou en science des données sont-elles représentées dans les instances de décision ? Ponctuellement consultées, ou intégrées ?","ou":"Composition des comités et conseils ; organigramme ; rapport annuel, chapitre gouvernance ; communiqués de nomination","termes":"{inst} comité données intelligence artificielle | {inst} chief data officer | {inst} organigramme direction innovation | {inst} nomination data science"},"P3|Programmes de formation":{"question":"Le personnel reçoit-il une formation à l'IA et aux données ? Formations ponctuelles, ou programme structuré et récurrent ?","ou":"Rapport annuel, chapitre ressources humaines ; rapports d'activité de l'institut de formation ; partenariats de formation","termes":"{inst} formation données personnel | {inst} staff training data science | {inst} académie formation | {inst} capacity building analytics"},"P3|Partenariats académiques":{"question":"Existe-t-il des collaborations avec des universités ou des centres de recherche sur l'IA ? Informelles, ou formalisées et actives ?","ou":"Conventions et protocoles d'accord ; chaires de recherche ; coauteurs des documents de travail ; actes de conférences","termes":"{inst} partenariat université intelligence artificielle | {inst} research partnership university | {inst} chaire recherche | {inst} memorandum of understanding research"},"P3|Culture de données":{"question":"La donnée est-elle traitée comme un actif géré — gouvernance, catalogue, qualité ? Simple sensibilisation, ou intégration aux processus ?","ou":"Politique de gouvernance des données ; rapport annuel, chapitre organisation ; stratégie de transformation numérique","termes":"{inst} gouvernance des données | {inst} data governance policy | {inst} data strategy | {inst} catalogue de données"},"P4|Qualité des données":{"question":"La qualité des données alimentant les modèles est-elle évaluée et documentée ? Évaluation partielle, ou dispositif complet ?","ou":"Notes méthodologiques statistiques ; rapports de supervision ; documentation des collectes","termes":"{inst} qualité des données | {inst} data quality framework | {inst} contrôle qualité statistiques | {inst} data validation"},"P4|Transparence et auditabilité":{"question":"Les décisions assistées par algorithme sont-elles traçables et auditables ? Des mesures existent-elles, partielles ou complètes ?","ou":"Rapports d'audit interne et externe ; politiques de contrôle interne ; documentation des systèmes","termes":"{inst} auditabilité algorithme | {inst} model risk management | {inst} explicabilité modèle | {inst} audit interne systèmes"},"P4|Mécanismes de recours":{"question":"Une personne affectée par une décision assistée par IA peut-elle la contester ? Le dispositif est-il absent, en développement, ou en place ?","ou":"Dispositif de traitement des réclamations ; protection du consommateur de services financiers ; médiation bancaire","termes":"{inst} réclamation consommateur services financiers | {inst} médiation bancaire | {inst} recours décision automatisée | {inst} consumer redress mechanism"},"P4|Lutte contre les biais":{"question":"Les biais des modèles — géographiques, de genre, de revenu — sont-ils identifiés et corrigés ? Simple sensibilisation, ou protocoles de test ?","ou":"Rapports d'inclusion financière ; notes méthodologiques des modèles de notation ; travaux de recherche interne","termes":"{inst} biais modèle crédit | {inst} fairness credit scoring | {inst} inclusion financière notation | {inst} algorithmic bias testing"}},"jeux_de_poids":[{"nom":"Poids retenus (dérivés)","poids":{"P1":0.21,"P2":0.31,"P3":0.16,"P4":0.32}},{"nom":"Poids de la version antérieure","poids":{"P1":0.3,"P2":0.25,"P3":0.2,"P4":0.25}},{"nom":"Poids égaux","poids":{"P1":0.25,"P2":0.25,"P3":0.25,"P4":0.25}}],"recette":[{"banque":"Banque de France","attendu":0.62},{"banque":"Reserve Bank of India","attendu":0.25},{"banque":"Banco Central do Brasil","attendu":0.5},{"banque":"Banque centrale du Ghana","attendu":0.2},{"banque":"BCEAO (UEMOA)","attendu":0.35}],"pied":"Application compilée depuis les fichiers igiam_1 à igiam_5 par construire.py. Les scores affichés ne sont pas saisis : ils sont recalculés depuis le codage à chaque ouverture de la page. Version du 16/11/2026 à 15h50."};
+
+/* ---------- état ---------- */
+const PIL = D.piliers.map(p => p.id);
+const POIDS = Object.fromEntries(D.piliers.map(p => [p.id, p.poids]));
+const NOMPIL = Object.fromEntries(D.piliers.map(p => [p.id, p.nom]));
+const IND = Object.fromEntries(D.piliers.map(p => [p.id, p.indicateurs]));
+const MAXPIL = D.max_pilier;
+let banques = D.banques.slice();
+let codes = structuredClone(D.codage);          // clef "banque|pilier|indicateur"
+const AJOUTEES = new Set();
+
+const K = (b, p, i) => b + '|' + p + '|' + i;
+const fr = (x, n = 2) => x.toLocaleString('fr-FR',
+  {minimumFractionDigits: n, maximumFractionDigits: n});
+
+function cellule(b, p, i) {
+  return codes[K(b, p, i)] || {code: 0, niveau: 'absence', document: '',
+    type: '', date: '', localisation: '', url: '', justification: ''};
+}
+function scorePilier(b, p) {
+  return IND[p].reduce((s, ind) => s + cellule(b, p, ind.nom).code, 0) / MAXPIL;
+}
+function profil(b) { return PIL.map(p => scorePilier(b, p)); }
+function indice(b, poids) {
+  const w = poids || POIDS;
+  return PIL.reduce((s, p) => s + w[p] * scorePilier(b, p), 0);
+}
+function classe(x) {
+  return x > D.bornes.haute ? 'I' : (x < D.bornes.basse ? 'III' : 'II');
+}
+function classement(poids) {
+  return banques.slice().sort((a, b) => indice(b, poids) - indice(a, poids));
+}
+
+/* ---------- gabarits ---------- */
+function tbl(entete, lignes, pied) {
+  const th = entete.map(c => '<th' + (c.n ? ' class="n"' : '') + '>' + c.t + '</th>').join('');
+  const tr = lignes.map(l => '<tr>' + l.map((c, j) =>
+    '<td' + (entete[j].n ? ' class="n"' : '') + '>' + c + '</td>').join('') + '</tr>').join('');
+  const tf = pied ? '<tfoot><tr>' + pied.map((c, j) =>
+    '<td' + (entete[j].n ? ' class="n"' : '') + '>' + c + '</td>').join('') + '</tr></tfoot>' : '';
+  return '<thead><tr>' + th + '</tr></thead><tbody>' + tr + '</tbody>' + tf;
+}
+function barres(items, max) {
+  const m = max || 1;
+  return items.map(it =>
+    '<div class="row" data-tip="' + esc(it.tip || '') + '">' +
+      '<div class="lab">' + esc(it.lab) + '</div>' +
+      '<div class="track"><div class="fill" style="width:' +
+        (100 * it.val / m).toFixed(2) + '%"><span>' + it.txt + '</span></div></div>' +
+    '</div>').join('');
+}
+function esc(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+/* ---------- 1. classement ---------- */
+function vueClassement() {
+  const ord = classement();
+  document.getElementById('barsClassement').innerHTML = barres(ord.map(b => {
+    const x = indice(b);
+    return {lab: b, val: x, txt: fr(x), tip: b + ', IGIAM ' + fr(x, 4) +
+      ', classe ' + classe(x) + '\nP1 ' + fr(scorePilier(b, 'P1'), 3) +
+      ' · P2 ' + fr(scorePilier(b, 'P2'), 3) + ' · P3 ' + fr(scorePilier(b, 'P3'), 3) +
+      ' · P4 ' + fr(scorePilier(b, 'P4'), 3)};
+  }), 1);
+
+  const ent = [{t: 'Rang', n: 1}, {t: 'Institution'}]
+    .concat(PIL.map(p => ({t: p + ' ' + NOMPIL[p], n: 1})))
+    .concat([{t: 'IGIAM', n: 1}, {t: 'Classe'}]);
+  const lignes = ord.map((b, k) => [String(k + 1), esc(b) +
+      (AJOUTEES.has(b) ? ' <span class="badge">ajoutée</span>' : '')]
+    .concat(PIL.map(p => fr(scorePilier(b, p), 3)))
+    .concat([fr(indice(b), 2), '<span class="badge">classe ' + classe(indice(b)) + '</span>']));
+  document.getElementById('tClassement').innerHTML =
+    '<caption>Scores de piliers, indice pondéré et classe de maturité. Un score de pilier est un multiple de 1/' +
+    MAXPIL + '.</caption>' + tbl(ent, lignes);
+}
+
+/* ---------- 2. fiche ---------- */
+function vueFiche() {
+  const b = document.getElementById('selFiche').value;
+  const termes = PIL.map(p => fr(POIDS[p], 2) + ' × ' + fr(scorePilier(b, p), 3));
+  const prod = PIL.map(p => POIDS[p] * scorePilier(b, p));
+  const ig = indice(b);
+  document.getElementById('ficheCalc').innerHTML =
+    '<div class="calc">' +
+    PIL.map(p => {
+      const s = IND[p].reduce((a, ind) => a + cellule(b, p, ind.nom).code, 0);
+      return '<b>' + p + '</b> ' + NOMPIL[p] + ' : somme des codes ' + s + ' / ' +
+        MAXPIL + ' = <b>' + fr(s / MAXPIL, 3) + '</b>, contribution ' +
+        fr(POIDS[p], 2) + ' × ' + fr(s / MAXPIL, 3) + ' = <b>' + fr(prod[PIL.indexOf(p)], 4) + '</b>';
+    }).join('<br>') +
+    '<br><br>IGIAM = ' + termes.join(' + ') + ' = <b>' + fr(ig, 4) + '</b>' +
+    '</div>' +
+    '<div class="big" style="margin-top:12px">' + fr(ig, 2) +
+    ' <span class="badge">classe ' + classe(ig) + '</span></div>' +
+    '<div class="bars" style="margin-top:14px">' + barres(PIL.map(p => ({
+      lab: p + ' ' + NOMPIL[p], val: scorePilier(b, p), txt: fr(scorePilier(b, p), 3),
+      tip: NOMPIL[p] + ', poids ' + fr(POIDS[p], 2) + ', contribution ' +
+        fr(POIDS[p] * scorePilier(b, p), 4)})), 1) + '</div>';
+
+  const ent = [{t: 'Pilier'}, {t: 'Indicateur'}, {t: 'Code', n: 1},
+    {t: 'Niveau atteint'}, {t: 'Preuve'}];
+  const lignes = [];
+  PIL.forEach(p => IND[p].forEach(ind => {
+    const d = cellule(b, p, ind.nom);
+    lignes.push([p, esc(ind.nom), String(d.code), esc(ind.niveaux[d.code]),
+      '<span class="ev' + (d.niveau === 'absence' ? ' abs' : '') + '">' +
+      esc(D.libelles_niveau[d.niveau] || d.niveau) + '</span>']);
+  }));
+  document.getElementById('ficheTable').innerHTML = '<table><caption>' + esc(b) +
+    ' : les seize cellules et le niveau du barème atteint.</caption>' +
+    tbl(ent, lignes) + '</table>';
+
+  const avec = [];
+  let documentees = 0;
+  PIL.forEach(p => IND[p].forEach(ind => {
+    const d = cellule(b, p, ind.nom);
+    if (d.niveau !== 'absence') documentees++;
+    if (d.document) avec.push(
+      '<details><summary>' + p + ' · ' + esc(ind.nom) + ' · code ' + d.code +
+      ' · ' + esc(d.document.slice(0, 90)) + (d.document.length > 90 ? '…' : '') +
+      '</summary><p><b>Document.</b> ' + esc(d.document) + '</p>' +
+      '<p><b>Type.</b> ' + esc(d.type) + ' <b>Date.</b> ' + esc(d.date) +
+      ' <b>Localisation.</b> ' + esc(d.localisation) + '</p>' +
+      '<p><b>Justification.</b> ' + esc(d.justification) + '</p>' +
+      (d.url ? '<p><a href="' + esc(d.url) + '" target="_blank" rel="noopener">' +
+        esc(d.url) + '</a></p>' : '') + '</details>');
+  }));
+  const total = PIL.reduce((a, p) => a + IND[p].length, 0);
+  document.getElementById('ficheSrc').innerHTML =
+    '<p class="src" style="margin:0 0 10px">Sources, cellule par cellule. ' +
+    documentees + ' cellules sur ' + total + ' sont adossées à un document retrouvé ; ' +
+    (total - documentees) + ' sont des absences de preuve, dont le motif est indiqué.</p>' +
+    (avec.join('') || '<p class="note">Aucune cellule documentée.</p>');
+}
+
+/* ---------- 3. recommandations ----------
+   Une « marche » est un indicateur relevé d'un cran. Son libellé est celui du
+   barème, et son gain est celui que l'indice enregistre : rien n'est rédigé
+   librement, tout se déduit du codage et de la pondération. */
+function marches(b) {
+  const L = [];
+  PIL.forEach(p => IND[p].forEach(ind => {
+    const d = cellule(b, p, ind.nom);
+    if (d.code >= ind.niveaux.length - 1) return;
+    L.push({pilier: p, nomPilier: NOMPIL[p], indicateur: ind.nom,
+      actuel: d.code, libelleActuel: ind.niveaux[d.code],
+      libelleVise: ind.niveaux[d.code + 1], preuve: d.niveau,
+      gain: POIDS[p] / MAXPIL});
+  }));
+  return L.sort((x, y) => y.gain - x.gain || x.actuel - y.actuel ||
+    x.indicateur.localeCompare(y.indicateur, 'fr'));
+}
+
+function vueReco() {
+  const b = document.getElementById('selReco').value;
+  const L = marches(b);
+  const base = indice(b), cl = classe(base);
+  let cum = base;
+  L.forEach(m => { m.cumul = (cum += m.gain); });
+  const plafond = cum;
+
+  document.getElementById('recoTuiles').innerHTML =
+    '<div class="tile"><div class="k">Indice actuel</div><div class="v">' +
+      fr(base, 2) + '</div><div class="d">classe ' + cl + '</div></div>' +
+    '<div class="tile"><div class="k">Marches disponibles</div><div class="v">' +
+      L.length + '</div><div class="d">sur ' + PIL.reduce((a, p) => a + IND[p].length, 0) +
+      ' indicateurs</div></div>' +
+    '<div class="tile"><div class="k">Indice au barème complet</div><div class="v">' +
+      fr(plafond, 2) + '</div><div class="d">toutes les marches franchies</div></div>';
+
+  let chemin;
+  if (cl === 'I') {
+    chemin = '<p class="calc">L’institution est déjà en classe I. Les ' + L.length +
+      ' marches restantes portent l’indice de <b>' + fr(base, 2) + '</b> à <b>' +
+      fr(plafond, 2) + '</b> sans changer de classe.</p>';
+  } else {
+    const cible = cl === 'III' ? D.bornes.basse : D.bornes.haute;
+    const suiv = cl === 'III' ? 'II' : 'I';
+    const k = L.findIndex(m => classe(m.cumul) === suiv ||
+      (suiv === 'II' ? m.cumul >= cible : m.cumul > cible)) + 1;
+    chemin = k
+      ? '<p class="calc">Pour atteindre la <b>classe ' + suiv + '</b>, ' +
+        (k === 1 ? 'une seule marche suffit' : 'les <b>' + k +
+         '</b> premières marches suffisent') + ', portant l’indice de <b>' +
+        fr(base, 2) + '</b> à <b>' + fr(L[k - 1].cumul, 2) + '</b> :</p><ol class="calc">' +
+        L.slice(0, k).map(m => '<li>' + esc(m.indicateur) + ' (' + m.pilier +
+          ') : ' + esc(m.libelleVise) + '</li>').join('') + '</ol>'
+      : '<p class="calc">Même en franchissant les ' + L.length +
+        ' marches disponibles, l’indice plafonne à <b>' + fr(plafond, 2) +
+        '</b> et la classe ' + suiv + ' reste hors d’atteinte.</p>';
+  }
+  document.getElementById('recoChemin').innerHTML = chemin;
+
+  const ent = [{t: 'Rang', n: 1}, {t: 'Pilier'}, {t: 'Indicateur'},
+    {t: 'Situation constatée'}, {t: 'Marche suivante du barème'},
+    {t: 'Gain', n: 1}, {t: 'Indice atteint', n: 1}];
+  document.getElementById('recoTable').innerHTML = '<table><caption>' + esc(b) +
+    ' : les marches du barème qui restent à franchir, classées par gain. Le gain ' +
+    'vaut 1/' + MAXPIL + ' × le poids du pilier, soit ' + fr(1 / MAXPIL, 3) +
+    ' × le poids.</caption>' +
+    tbl(ent, L.map((m, k) => [String(k + 1), m.pilier, esc(m.indicateur),
+      esc(m.libelleActuel) + (m.preuve === 'absence'
+        ? ' <span class="ev abs">absence de preuve</span>' : ''),
+      esc(m.libelleVise), fr(m.gain, 4), fr(m.cumul, 3)])) + '</table>';
+
+  document.getElementById('recoIATexte').innerHTML = '';
+  document.getElementById('recoIAEtat').textContent = '';
+}
+
+/* La synthèse est rédigée par Claude à partir du seul tableau ci-dessus, et
+   seulement là où la page en a les moyens : ouverte comme fichier local, elle
+   affiche les recommandations calculées et rien de plus. */
+let IA = null;
+(async () => {
+  IA = window.claude && window.claude.use ? await window.claude.use('sample') : null;
+  document.getElementById('recoIANote').textContent = IA
+    ? 'Claude met en forme le tableau ci-dessus en quelques phrases. Il ne reçoit '
+      + 'que ces lignes et les scores de l’institution, et ne dispose d’aucune '
+      + 'autre information. Cette synthèse est un commentaire de lecture : elle '
+      + 'ne fait pas partie des résultats de la thèse, qui sont les scores et le '
+      + 'codage.'
+    : 'La rédaction automatique d’une synthèse n’est pas disponible ici : elle '
+      + 'suppose que la page soit ouverte depuis claude.ai. Les recommandations '
+      + 'ci-dessus, elles, sont calculées et complètes.';
+  document.getElementById('recoIABarre').hidden = !IA;
+})();
+
+document.getElementById('recoIABouton').onclick = async () => {
+  if (!IA) return;
+  const b = document.getElementById('selReco').value;
+  const L = marches(b), base = indice(b);
+  const bouton = document.getElementById('recoIABouton');
+  const etat = document.getElementById('recoIAEtat');
+  const zone = document.getElementById('recoIATexte');
+  bouton.disabled = true;
+  etat.textContent = 'Rédaction…';
+  zone.innerHTML = '';
+  const faits =
+    'Institution : ' + b + '\n' +
+    'Indice IGIAM : ' + fr(base, 2) + ', classe de maturité ' + classe(base) +
+    ' (classe I au-dessus de ' + fr(D.bornes.haute, 2) + ', classe III en dessous de ' +
+    fr(D.bornes.basse, 2) + ').\n' +
+    'Scores par pilier, sur 1 : ' + PIL.map(p => NOMPIL[p] + ' ' +
+      fr(scorePilier(b, p), 3) + ' (poids ' + fr(POIDS[p], 2) + ')').join(', ') + '.\n\n' +
+    'Marches du barème restant à franchir, de la plus rentable à la moins rentable :\n' +
+    L.map((m, k) => (k + 1) + '. [' + m.nomPilier + '] ' + m.indicateur +
+      ' : actuellement « ' + m.libelleActuel + ' »' +
+      (m.preuve === 'absence' ? ' (aucun document retrouvé)' : '') +
+      ', marche suivante « ' + m.libelleVise + ' », gain ' + fr(m.gain, 4) +
+      ', indice atteint ' + fr(m.cumul, 3)).join('\n');
+  try {
+    const r = await IA(
+      'Tu rédiges un commentaire pour une thèse de doctorat en sciences ' +
+      'économiques portant sur la gouvernance de l’intelligence artificielle ' +
+      'dans les banques centrales.\n\n' +
+      'Voici les seuls faits dont tu disposes :\n\n' + faits + '\n\n' +
+      'Rédige en français, en 150 à 200 mots, un commentaire sur les priorités ' +
+      'de cette institution. Appuie-toi exclusivement sur les faits ci-dessus : ' +
+      'n’invente aucun chiffre, aucune date, aucun document, aucun programme, ' +
+      'et ne cite aucune autre institution. Explique pourquoi les premières ' +
+      'marches sont les plus rentables, en rappelant que le gain dépend du ' +
+      'poids du pilier. Distingue les indicateurs où un document existe de ceux ' +
+      'où aucun document n’a été retrouvé, qui appellent d’abord une ' +
+      'publication. Écris en prose suivie, sans titres ni listes à puces, sur ' +
+      'un ton sobre et académique.',
+      {modelTier: 'default', onText: ({text}) => {
+        zone.innerHTML = '<p class="calc" style="color:var(--ink)">' +
+          esc(text).replace(/\n+/g, '</p><p class="calc" style="color:var(--ink)">') +
+          '</p>';
+      }});
+    etat.textContent = 'Rédigé par Claude le ' +
+      new Date().toLocaleDateString('fr-FR') + ', à partir du tableau ci-dessus.';
+    if (!r.text) zone.innerHTML = '<p class="note">Aucune réponse.</p>';
+  } catch (e) {
+    etat.textContent = e && e.code === 'rate_limited'
+      ? 'Trop de demandes, réessayez dans un instant.'
+      : 'La rédaction n’a pas abouti. Les recommandations calculées restent valables.';
+  }
+  bouton.disabled = false;
+};
+
+/* ---------- 3. édition ---------- */
+function vueEdition() {
+  const b = document.getElementById('selEdit').value;
+  const ent = [{t: 'Pilier'}, {t: 'Indicateur'}, {t: 'Code'}, {t: 'Niveau atteint'},
+    {t: 'Score du pilier', n: 1}];
+  const lignes = [];
+  PIL.forEach(p => IND[p].forEach((ind, j) => {
+    const d = cellule(b, p, ind.nom);
+    const opts = ind.niveaux.map((lv, v) =>
+      '<option value="' + v + '"' + (v === d.code ? ' selected' : '') + '>' +
+      v + ' · ' + esc(lv) + '</option>').join('');
+    lignes.push([j === 0 ? p + ' ' + NOMPIL[p] : '', esc(ind.nom),
+      '<select data-b="' + esc(b) + '" data-p="' + p + '" data-i="' + esc(ind.nom) +
+      '" class="codeSel">' + opts + '</select>',
+      esc(ind.niveaux[d.code]),
+      j === 0 ? '<b>' + fr(scorePilier(b, p), 3) + '</b>' : '']);
+  }));
+  const ig = indice(b), rang = classement().indexOf(b) + 1;
+  document.getElementById('editTuiles').innerHTML =
+    '<div class="tile"><div class="k">IGIAM</div><div class="v big" ' +
+      'style="font-size:30px">' + fr(ig, 2) + '</div><div class="d">' +
+      (AJOUTEES.has(b) && !ig ? 'codez les indicateurs ci-dessous'
+                              : 'valeur exacte ' + fr(ig, 4)) + '</div></div>' +
+    '<div class="tile"><div class="k">Classe de maturité</div><div class="v">' +
+      classe(ig) + '</div><div class="d">seuils ' + fr(D.bornes.basse, 2) + ' et ' +
+      fr(D.bornes.haute, 2) + '</div></div>' +
+    '<div class="tile"><div class="k">Rang</div><div class="v">' + rang +
+      '</div><div class="d">sur ' + banques.length + ' institutions</div></div>';
+  document.getElementById('editCalc').innerHTML = '<div class="calc">' +
+    PIL.map(p => '<b>' + p + '</b> ' + NOMPIL[p] + ' : ' +
+      IND[p].reduce((a, ind) => a + cellule(b, p, ind.nom).code, 0) + ' / ' + MAXPIL +
+      ' = <b>' + fr(scorePilier(b, p), 3) + '</b>, contribution ' + fr(POIDS[p], 2) +
+      ' × ' + fr(scorePilier(b, p), 3) + ' = <b>' +
+      fr(POIDS[p] * scorePilier(b, p), 4) + '</b>').join('<br>') +
+    '<br><br>IGIAM = ' + PIL.map(p => fr(POIDS[p], 2) + ' × ' +
+      fr(scorePilier(b, p), 3)).join(' + ') + ' = <b>' + fr(ig, 4) + '</b>, ' +
+    'arrondi à <b>' + fr(ig, 2) + '</b>.</div>';
+  document.getElementById('editTable').innerHTML = '<table><caption>' + esc(b) +
+    ' : le code de chaque indicateur. Toute modification recalcule le pilier, ' +
+    'l’indice et le rang ci-dessus.</caption>' + tbl(ent, lignes) + '</table>';
+  document.querySelectorAll('.codeSel').forEach(s => s.onchange = () => {
+    const k = K(s.dataset.b, s.dataset.p, s.dataset.i);
+    if (!codes[k]) codes[k] = {code: 0, niveau: 'absence', document: '', type: '',
+      date: '', localisation: '', url: '', justification: ''};
+    codes[k].code = +s.value;
+    codes[k].modifie = true;
+    tout();
+  });
+  vueEnquete(b);
+  const n = Object.values(codes).filter(c => c.modifie).length;
+  const reste = AJOUTEES.has(b) ? PIL.reduce((a, p) => a +
+    IND[p].filter(i => !cellule(b, p, i.nom).modifie).length, 0) : 0;
+  document.getElementById('etatEdit').textContent = AJOUTEES.has(b)
+    ? (reste ? 'Institution ajoutée : ' + reste + (reste > 1
+        ? ' indicateurs restent à coder dans le tableau ci-dessous'
+        : ' indicateur reste à coder dans le tableau ci-dessous')
+             : 'Institution ajoutée, ses seize indicateurs sont codés')
+    : (n ? n + (n > 1 ? ' cellules modifiées' : ' cellule modifiée') + ' dans cette page'
+         : 'Codage publié, aucune modification');
+}
+
+/* La grille d'enquête vient du fichier igiam_6 : elle dit quoi chercher et où,
+   jamais ce qu'il faut conclure. Le nom de l'institution y est substitué. */
+function enqueteDe(b) {
+  const L = [];
+  PIL.forEach(p => IND[p].forEach(ind => {
+    const e = D.enquete[p + '|' + ind.nom];
+    if (!e) return;
+    const d = cellule(b, p, ind.nom);
+    L.push({pilier: p, indicateur: ind.nom, code: d.code,
+      fait: !!d.modifie || d.niveau !== 'absence',
+      question: e.question, ou: e.ou,
+      termes: e.termes.split('|').map(t => t.trim().replace(/\{inst\}/g, b))});
+  }));
+  return L;
+}
+
+function vueEnquete(b) {
+  const L = enqueteDe(b), reste = L.filter(x => !x.fait).length;
+  document.getElementById('enqueteEtat').textContent = reste
+    ? reste + (reste > 1 ? ' indicateurs sans document établi' : ' indicateur sans document établi')
+    : 'Tous les indicateurs sont adossés à un document';
+  const ent = [{t: 'Pilier'}, {t: 'Indicateur'}, {t: 'Question à trancher'},
+    {t: 'Où chercher'}, {t: 'Termes de recherche'}];
+  document.getElementById('enqueteTable').innerHTML = '<table><caption>' + esc(b) +
+    ' : les seize questions à instruire. Les lignes déjà adossées à un document ' +
+    'sont grisées.</caption>' +
+    tbl(ent, L.map(x => [x.pilier + (x.fait ? '' : ' <span class="ev abs">à faire</span>'),
+      esc(x.indicateur), esc(x.question), esc(x.ou),
+      x.termes.map(t => '<code class="rech">' + esc(t) + '</code>').join(' ')]
+      .map(c => x.fait ? '<span style="opacity:.55">' + c + '</span>' : c))) + '</table>';
+}
+
+document.getElementById('expEnquete').onclick = () => {
+  const b = document.getElementById('selEdit').value;
+  const l = [['Institution', 'Pilier', 'Indicateur', 'Code actuel',
+    'Document etabli', 'Question a trancher', 'Ou chercher', 'Termes de recherche']];
+  enqueteDe(b).forEach(x => l.push([b, x.pilier, x.indicateur, x.code,
+    x.fait ? 'oui' : 'non', x.question, x.ou, x.termes.join(' | ')]));
+  csv('igiam_grille_enquete.csv', l);
+};
+
+/* ---------- 4. sensibilité ---------- */
+function vuePoids() {
+  const jeux = D.jeux_de_poids;
+  const ent = [{t: 'Institution'}].concat(jeux.map(j => ({t: j.nom, n: 1})))
+    .concat([{t: 'Écart max', n: 1}]);
+  const base = classement(jeux[0].poids).map(b => b);
+  const lignes = base.map(b => {
+    const v = jeux.map(j => indice(b, j.poids));
+    return [esc(b)].concat(v.map(x => fr(x, 4) + ' <span class="badge">' + classe(x) + '</span>'))
+      .concat([fr(Math.max(...v) - Math.min(...v), 4)]);
+  });
+  const ordres = jeux.map(j => classement(j.poids).join(' > '));
+  const memeOrdre = ordres.every(o => o === ordres[0]);
+  document.getElementById('tPoids').innerHTML =
+    '<caption>Indice et classe sous chaque jeu de poids. ' +
+    (memeOrdre ? 'Le classement est <b>identique</b> sous les trois jeux.'
+               : '<span class="chg">Le classement change selon le jeu de poids.</span>') +
+    '</caption>' + tbl(ent, lignes);
+}
+
+function vueCodage() {
+  const un = PIL.map(p => ({p: p, eff: (1 / MAXPIL) * POIDS[p]}));
+  const ecartPoids = Math.max(...banques.map(b => {
+    const v = D.jeux_de_poids.map(j => indice(b, j.poids));
+    return Math.max(...v) - Math.min(...v);
+  }));
+  const mc = monteCarlo(4000);
+  document.getElementById('tuilesCodage').innerHTML =
+    '<div class="tile"><div class="k">Un cran de code</div><div class="v">' +
+      fr(Math.min(...un.map(u => u.eff)), 4) + ' – ' + fr(Math.max(...un.map(u => u.eff)), 4) +
+      '</div><div class="d">déplacement de l’indice selon le pilier</div></div>' +
+    '<div class="tile"><div class="k">Changement de pondération</div><div class="v">' +
+      fr(ecartPoids, 4) + '</div><div class="d">écart maximal sur les ' + banques.length +
+      ' institutions</div></div>' +
+    '<div class="tile"><div class="k">Classement préservé</div><div class="v">' +
+      fr(100 * mc.rangOk, 1) + ' %</div><div class="d">sur 4 000 tirages, un cran par pilier</div></div>';
+
+  const ent = [{t: 'Institution'}, {t: 'IGIAM', n: 1}, {t: 'Classe'},
+    {t: 'Marge au seuil', n: 1}, {t: 'Crans pour changer de classe', n: 1},
+    {t: 'Classe modifiée', n: 1}];
+  const lignes = classement().map(b => {
+    const x = indice(b), c = classe(x);
+    const marge = Math.min(Math.abs(x - D.bornes.basse), Math.abs(x - D.bornes.haute));
+    return [esc(b), fr(x, 4), '<span class="badge">' + c + '</span>', fr(marge, 4),
+      String(cransPourChanger(b)), fr(100 * mc.chg[b], 1) + ' %'];
+  });
+  document.getElementById('tCrans').innerHTML =
+    '<caption>Un « cran » est un code relevé ou abaissé de 1 sur un indicateur, soit 1/' +
+    MAXPIL + ' = ' + fr(1 / MAXPIL, 3) + ' sur le score de son pilier.</caption>' +
+    tbl(ent, lignes);
+}
+
+function cransPourChanger(b) {
+  const c0 = classe(indice(b));
+  const s = PIL.map(p => scorePilier(b, p));
+  for (let k = 1; k <= 4 * MAXPIL; k++) {
+    // le déplacement le plus efficace met tous les crans sur le pilier le mieux pondéré
+    const ordre = PIL.map((p, j) => j).sort((x, y) => POIDS[PIL[y]] - POIDS[PIL[x]]);
+    for (const sens of [1, -1]) {
+      const v = s.slice();
+      let reste = k;
+      for (const j of ordre) {
+        const place = sens > 0 ? Math.round((1 - v[j]) * MAXPIL) : Math.round(v[j] * MAXPIL);
+        const mis = Math.min(reste, place);
+        v[j] += sens * mis / MAXPIL;
+        reste -= mis;
+        if (!reste) break;
+      }
+      if (reste) continue;
+      const x = PIL.reduce((a, p, j) => a + POIDS[p] * v[j], 0);
+      if (classe(x) !== c0) return k;
+    }
+  }
+  return NaN;
+}
+
+let graine = 1;
+function alea() {                                 // générateur déterministe
+  graine = (graine * 1103515245 + 12345) & 0x7fffffff;
+  return graine / 0x7fffffff;
+}
+/* Protocole de la thèse : dans chaque pilier, un indicateur est tiré au hasard
+   et son code est relevé ou abaissé d'un cran, le signe étant lui aussi tiré au
+   hasard. Les codes restent bornés à l'intervalle du barème. */
+function monteCarlo(n) {
+  graine = 20261116;
+  const refOrdre = classement().join('|');
+  const refCl = Object.fromEntries(banques.map(b => [b, classe(indice(b))]));
+  const chg = Object.fromEntries(banques.map(b => [b, 0]));
+  let rangOk = 0;
+  for (let t = 0; t < n; t++) {
+    const s = {};
+    banques.forEach(b => {
+      s[b] = PIL.reduce((a, p) => {
+        const tire = Math.floor(alea() * IND[p].length);
+        const sens = alea() < 0.5 ? -1 : 1;
+        let som = IND[p].reduce((u, ind, j) => {
+          const c = cellule(b, p, ind.nom).code + (j === tire ? sens : 0);
+          return u + Math.max(0, Math.min(2, c));
+        }, 0);
+        return a + POIDS[p] * som / MAXPIL;
+      }, 0);
+    });
+    banques.forEach(b => { if (classe(s[b]) !== refCl[b]) chg[b]++; });
+    const o = banques.slice().sort((a, b) => s[b] - s[a]).join('|');
+    if (o === refOrdre) rangOk++;
+  }
+  banques.forEach(b => chg[b] /= n);
+  return {chg: chg, rangOk: rangOk / n};
+}
+
+function vueAbsence() {
+  const cols = [0, 1, 2];
+  const ent = [{t: 'Institution'}, {t: 'Cellules sans preuve', n: 1}]
+    .concat(cols.map(k => ({t: k === 0 ? 'Codage publié' : '+' + k + ' cran' + (k > 1 ? 's' : ''), n: 1})));
+  const lignes = classement().map(b => {
+    const nAbs = PIL.reduce((a, p) => a + IND[p].filter(ind =>
+      cellule(b, p, ind.nom).niveau === 'absence').length, 0);
+    const v = cols.map(k => indice2(b, k));
+    return [esc(b), String(nAbs)].concat(v.map(x =>
+      fr(x, 4) + ' <span class="badge">' + classe(x) + '</span>'));
+  });
+  const ordres = cols.map(k => banques.slice()
+    .sort((a, b) => indice2(b, k) - indice2(a, k)).join(' > '));
+  document.getElementById('tAbsence').innerHTML =
+    '<caption>Effet d’un relèvement des seules cellules codées 0 faute de document. ' +
+    (ordres[2] === ordres[0]
+      ? 'Le classement résiste à +2 crans.'
+      : '<span class="chg">À +2 crans, le classement devient : ' + esc(ordres[2]) + '.</span>') +
+    '</caption>' + tbl(ent, lignes);
+}
+function indice2(b, releve) {
+  return PIL.reduce((a, p) => {
+    const som = IND[p].reduce((u, ind) => {
+      const d = cellule(b, p, ind.nom);
+      return u + (d.niveau === 'absence' ? Math.min(2, d.code + releve) : d.code);
+    }, 0);
+    return a + POIDS[p] * som / MAXPIL;
+  }, 0);
+}
+
+/* ---------- 5. export ---------- */
+/* Une page publiée ne peut pas déclencher de téléchargement : le CSV est
+   affiché, sélectionnable, avec un bouton de copie. */
+function csv(nom, lignes) {
+  const t = lignes.map(l => l.map(c => {
+    const s = String(c);
+    return /[;"\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+  }).join(';')).join('\n');
+  document.getElementById('nomCsv').textContent = nom;
+  document.getElementById('texteCsv').value = t;
+  document.getElementById('etatCsv').textContent =
+    lignes.length - 1 + ' lignes, séparateur point-virgule';
+  document.getElementById('zoneCsv').hidden = false;
+  document.getElementById('zoneCsv').scrollIntoView(
+    {behavior: 'smooth', block: 'nearest'});
+}
+document.getElementById('copierCsv').onclick = () => {
+  const z = document.getElementById('texteCsv'), e = document.getElementById('etatCsv');
+  const fini = ok => e.textContent = ok ? 'Copié' : 'Sélectionnez le texte puis copiez-le';
+  try {
+    navigator.clipboard.writeText(z.value).then(() => fini(true), () => {
+      z.focus(); z.select(); fini(false);
+    });
+  } catch (err) { z.focus(); z.select(); fini(false); }
+};
+function expScores() {
+  const l = [['Rang', 'Institution'].concat(PIL.map(p => p + ' ' + NOMPIL[p]))
+    .concat(['Detail du calcul', 'IGIAM', 'IGIAM arrondi', 'Classe'])];
+  classement().forEach((b, k) => {
+    const s = PIL.map(p => scorePilier(b, p));
+    l.push([k + 1, b].concat(s.map(x => x.toFixed(3)))
+      .concat([PIL.map((p, j) => POIDS[p].toFixed(2) + 'x' + s[j].toFixed(3)).join(' + '),
+        indice(b).toFixed(4), indice(b).toFixed(2), classe(indice(b))]));
+  });
+  csv('igiam_scores.csv', l);
+}
+function expCodage() {
+  const l = [['Institution', 'Pilier', 'Nom du pilier', 'Indicateur', 'Code',
+    'Niveau atteint', 'Niveau de preuve', 'Document', 'Type', 'Date',
+    'Localisation', 'URL', 'Justification', 'Saisi dans cette page']];
+  banques.forEach(b => PIL.forEach(p => IND[p].forEach(ind => {
+    const d = cellule(b, p, ind.nom);
+    l.push([b, p, NOMPIL[p], ind.nom, d.code, ind.niveaux[d.code],
+      D.libelles_niveau[d.niveau] || d.niveau, d.document, d.type, d.date,
+      d.localisation, d.url, d.justification,
+      d.modifie ? 'code modifie' : (d.ajoute ? 'institution ajoutee' : '')]);
+  })));
+  csv('igiam_codage.csv', l);
+}
+function expPoids() {
+  const l = [['Ligne', 'Mesure', 'Document', 'Dictionnaire'].concat(PIL)];
+  D.ponderation.forEach(r => l.push([r.ligne, r.mesure, r.document, r.dictionnaire]
+    .concat(PIL.map(p => r[p]))));
+  csv('igiam_ponderation.csv', l);
+}
+
+/* ---------- navigation, infobulles, thème ---------- */
+const ONGLETS = [['s-classement', 'Classement'], ['s-fiche', 'Fiche détaillée'],
+  ['s-reco', 'Recommandations'], ['s-edition', 'Codage et édition'],
+  ['s-sensibilite', 'Sensibilité'], ['s-export', 'Export']];
+document.getElementById('nav').innerHTML = ONGLETS.map(([id, t], k) =>
+  '<button role="tab" data-s="' + id + '" aria-selected="' + (k === 0) + '">' + t +
+  '</button>').join('');
+document.querySelectorAll('#nav button').forEach(btn => btn.onclick = () => {
+  document.querySelectorAll('#nav button').forEach(b =>
+    b.setAttribute('aria-selected', b === btn));
+  document.querySelectorAll('section').forEach(s =>
+    s.classList.toggle('on', s.id === btn.dataset.s));
+});
+
+const tip = document.getElementById('tip');
+document.addEventListener('mousemove', e => {
+  const r = e.target.closest('[data-tip]');
+  if (!r) { tip.classList.remove('on'); return; }
+  const parts = r.dataset.tip.split('\n');
+  tip.innerHTML = '<b>' + esc(parts[0]) + '</b>' +
+    parts.slice(1).map(esc).join('<br>');
+  tip.classList.add('on');
+  const w = tip.offsetWidth, h = tip.offsetHeight;
+  tip.style.left = Math.min(e.clientX + 14, innerWidth - w - 10) + 'px';
+  tip.style.top = Math.max(8, e.clientY - h - 12) + 'px';
+});
+
+document.getElementById('theme').onclick = () => {
+  const d = document.documentElement;
+  const sombre = d.getAttribute('data-theme') === 'dark' ||
+    (!d.getAttribute('data-theme') && matchMedia('(prefers-color-scheme: dark)').matches);
+  d.setAttribute('data-theme', sombre ? 'light' : 'dark');
+};
+
+function remplirSelects() {
+  ['selFiche', 'selReco', 'selEdit'].forEach(id => {
+    const s = document.getElementById(id), garde = s.value;
+    s.innerHTML = banques.map(b => '<option>' + esc(b) + '</option>').join('');
+    if (banques.includes(garde)) s.value = garde;
+  });
+}
+document.getElementById('selFiche').onchange = vueFiche;
+document.getElementById('selReco').onchange = vueReco;
+document.getElementById('selEdit').onchange = vueEdition;
+document.getElementById('reset').onclick = () => {
+  codes = structuredClone(D.codage);
+  banques = D.banques.slice();
+  AJOUTEES.clear();
+  remplirSelects();
+  tout();
+};
+document.getElementById('ajouter').onclick = () => {
+  const n = document.getElementById('nouvNom').value.trim();
+  if (!n || banques.includes(n)) return;
+  banques.push(n);
+  AJOUTEES.add(n);
+  PIL.forEach(p => IND[p].forEach(ind => {
+    codes[K(n, p, ind.nom)] = {code: 0, niveau: 'absence', document: '', type: '',
+      date: '', localisation: '', url: '', justification: '', ajoute: true};
+  }));
+  document.getElementById('nouvNom').value = '';
+  remplirSelects();
+  document.getElementById('selEdit').value = n;
+  tout();
+};
+document.getElementById('expScores').onclick = expScores;
+document.getElementById('expCodage').onclick = expCodage;
+document.getElementById('expPoids').onclick = expPoids;
+
+/* ---------- rendu ---------- */
+function tout() {
+  vueClassement(); vueFiche(); vueReco(); vueEdition();
+  vuePoids(); vueCodage(); vueAbsence();
+}
+document.getElementById('sousTitre').textContent =
+  banques.length + ' banques centrales · ' + PIL.length + ' piliers · ' +
+  PIL.reduce((a, p) => a + IND[p].length, 0) + ' indicateurs · ' +
+  Object.keys(D.codage).length + ' cellules codées';
+document.getElementById('ligneP').innerHTML = 'Poids des piliers, dérivés de ' +
+  D.ponderation.filter(r => r.ligne === 'estimation').length +
+  ' estimations : ' + PIL.map(p => NOMPIL[p] + ' <b>' + fr(POIDS[p], 2) + '</b>').join(' · ');
+document.getElementById('b1').textContent = fr(D.bornes.basse, 2);
+document.getElementById('b2').textContent = fr(D.bornes.haute, 2);
+document.getElementById('recette').innerHTML = D.recette.map(r =>
+  esc(r.banque) + ' : attendu <b>' + fr(r.attendu, 2) + '</b>, calculé <b>' +
+  fr(indice(r.banque), 2) + '</b> ' +
+  (Math.abs(indice(r.banque) - r.attendu) < 5e-3 ? '✓' : '✗')).join('<br>');
+document.getElementById('pied').textContent = D.pied;
+remplirSelects();
+tout();
+</script>
+
+</body></html>
