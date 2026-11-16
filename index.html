@@ -128,6 +128,10 @@ header{padding:0;border:0}
 .etape h3{margin:2px 0 8px;font:600 19px/1.3 var(--titre)}
 .etape > p{margin:0 0 10px;max-width:76ch;color:var(--ink2);font-size:14.5px;line-height:1.65}
 .etape > p b{color:var(--ink);font-weight:600}
+.choix{border-left:3px solid #d9a21b;background:var(--surface);border-radius:0 8px 8px 0;padding:14px 18px;margin:4px 0 14px;max-width:80ch}
+.choix p{margin:0 0 9px;font-size:14px;line-height:1.65;color:var(--ink2)}
+.choix p:last-child{margin:0}
+.choix b{color:var(--ink)}
 .regles{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;margin:12px 0 0}
 .regle{background:var(--surface);border:1px solid var(--ring);border-radius:8px;padding:13px 15px;font-size:13.5px;line-height:1.55;color:var(--ink2)}
 .regle b{display:block;color:var(--ink);font:600 14px var(--titre);margin-bottom:4px}
@@ -1238,6 +1242,7 @@ function vueAccueil() {
      '<p><b>' + D.banques.length + ' banques centrales</b> sur quatre continents : ' + D.banques.join(', ') + '. ' +
      'La période observée est <b>2024-2025</b> : un document publié plus tard peut être retenu s’il décrit l’état de cette période, ' +
      'et un dispositif adopté après elle ne l’est pas, même s’il est connu.</p>' +
+     '<div class="choix"><p><b>Pourquoi ces cinq banques centrales.</b> Le corpus ne prétend pas être représentatif. C’est un échantillon raisonné, construit autour d’un cas central, la <b>BCEAO</b>, et de quatre points de comparaison qui éclairent chacun une dimension différente.</p><p>La <b>Banque centrale du Ghana</b> est la comparaison régionale. Elle relève comme la BCEAO de l’espace CEDEAO, mais elle conduit seule une politique monétaire nationale et cible l’inflation. Elle permet de distinguer ce qui tient au contexte ouest-africain de ce qui tient au cadre monétaire de l’UEMOA.</p><p>La <b>Banque de France</b> est le point de référence institutionnel. Membre de l’Eurosystème, elle publie une doctrine détaillée sur son usage de l’IA, et elle compte parmi les partenaires de la BCEAO.</p><p>La <b>Reserve Bank of India</b> et le <b>Banco Central do Brasil</b> représentent deux grandes économies émergentes qui ont bâti des infrastructures de paiement publiques de premier plan (UPI et Pix). Ils montrent ce que peut faire une banque centrale du Sud qui dispose de capacités techniques importantes.</p><p>L’ensemble couvre quatre continents et des régimes monétaires contrastés : union monétaire, ciblage d’inflation national, Eurosystème. On peut ainsi tester si la gouvernance de l’IA monétaire dépend du niveau de développement, du cadre monétaire ou des choix institutionnels propres à chaque banque.</p></div>' +
      '<p>Le codage s’appuie sur <b>' + docs + ' documents et pages cités</b> : rapports annuels, bulletins, actes normatifs, communiqués et, à défaut, déclarations officielles rapportées par la presse. Chaque cellule cite sa source, sa page et sa date dans l’onglet Fiche détaillée.</p>'],
     ['Règles de codage',
      '<p>Le protocole fixe des règles que chaque justification invoque explicitement.</p><div class="regles">' +
