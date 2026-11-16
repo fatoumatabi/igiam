@@ -1,5 +1,5 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
-<title>IGIAM — Indice de Gouvernance Monétaire par IA</title>
+<title>IGIAM · Indice de Gouvernance Monétaire par IA</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1235,7 +1235,7 @@ function vueAccueil() {
   const etapes = [
     ['Ce que l’indice mesure',
      '<p>L’IGIAM répond à une question : <b>une banque centrale gouverne-t-elle l’intelligence artificielle qu’elle utilise elle-même ?</b> ' +
-     'Il porte sur ses propres usages — prévision, supervision, détection de la fraude, assistants internes — et non sur la réglementation qu’elle impose au secteur bancaire.</p>' +
+     'Il porte sur ses propres usages (prévision, supervision, détection de la fraude, assistants internes), et non sur la réglementation qu’elle impose au secteur bancaire.</p>' +
      '<p>Cette lecture est décisive pour certains indicateurs. Une banque centrale qui encadre abondamment les algorithmes des banques, sans encadrer les siens, est codée 0 sur l’encadrement interne. ' +
      'C’est le cas de la Reserve Bank of India sur le pilier Données et éthique.</p>'],
     ['Corpus et période',
@@ -1263,8 +1263,8 @@ function vueAccueil() {
        p.indicateurs.map(i => '<tr><td>' + esc(i.nom) + '</td>' + i.niveaux.map(n => '<td>' + esc(n) + '</td>').join('') + '</tr>').join('') +
        '</tbody></table></details>').join('')],
     ['La pondération',
-     '<p>Les poids ne sont pas fixés à dire d’expert. Ils sont dérivés de <b>deux cadres de référence</b> — ' +
-     [...new Set(est.map(r => r.document))].join(' et ') + ' — selon deux mesures (A et C) et deux dictionnaires (noyau et étendu), soit <b>' + est.length +
+     '<p>Les poids ne sont pas fixés à dire d’expert. Ils sont dérivés de <b>deux cadres de référence</b>, ' +
+     [...new Set(est.map(r => r.document))].join(' et ') + ', selon deux mesures (A et C) et deux dictionnaires (noyau et étendu), soit <b>' + est.length +
      ' estimations</b>. Les poids retenus sont leur moyenne, arrondie à deux décimales par la méthode du plus fort reste pour que leur somme fasse exactement 1.</p>' +
      '<details><summary>Les ' + est.length + ' estimations<span>et leur moyenne</span></summary><table><thead><tr><th>Document</th><th>Mesure</th><th>Dictionnaire</th>' +
      PIL.map(p => '<th class="n">' + p + '</th>').join('') + '</tr></thead><tbody>' +
