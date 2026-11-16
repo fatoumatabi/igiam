@@ -122,6 +122,31 @@ header{padding:0;border:0}
 .pil .pw{font:600 28px/1 var(--titre);font-variant-numeric:tabular-nums}
 .pil h3{margin:6px 0 10px;font:600 15px var(--titre)}
 .pil ol{margin:0;padding-left:18px;font-size:13px;color:var(--ink2);line-height:1.6}
+.etapes{list-style:none;margin:8px 0 0 17px;padding:0;counter-reset:et;border-left:2px solid var(--grid)}
+.etape{position:relative;padding:0 0 34px 34px;counter-increment:et}
+.etape::before{content:counter(et,decimal-leading-zero);position:absolute;left:-17px;top:-2px;width:32px;height:32px;border-radius:50%;background:var(--plane);border:2px solid #d9a21b;color:var(--ink);font:600 12px/28px var(--texte);text-align:center}
+.etape h3{margin:2px 0 8px;font:600 19px/1.3 var(--titre)}
+.etape > p{margin:0 0 10px;max-width:76ch;color:var(--ink2);font-size:14.5px;line-height:1.65}
+.etape > p b{color:var(--ink);font-weight:600}
+.regles{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;margin:12px 0 0}
+.regle{background:var(--surface);border:1px solid var(--ring);border-radius:8px;padding:13px 15px;font-size:13.5px;line-height:1.55;color:var(--ink2)}
+.regle b{display:block;color:var(--ink);font:600 14px var(--titre);margin-bottom:4px}
+.regle .rn{color:#b07d0a;font:600 11px var(--texte);letter-spacing:.08em;text-transform:uppercase}
+.preuves{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.preuves div{flex:1 1 180px;background:var(--surface);border:1px solid var(--ring);border-radius:8px;padding:12px 14px;font-size:13px;color:var(--ink2)}
+.preuves b{display:block;font:600 26px/1 var(--titre);color:var(--ink);margin-bottom:6px;font-variant-numeric:tabular-nums}
+.etape details{background:var(--surface);border:1px solid var(--ring);border-radius:8px;padding:10px 14px;margin:8px 0 0}
+.etape details[open] summary{margin-bottom:8px}
+.etape summary{font-size:14px;color:var(--ink);font-weight:600}
+.etape summary span{color:var(--muted);font-weight:400;margin-left:6px}
+.etape details table{font-size:12.5px}
+.formule{font:15px/1.7 ui-monospace,"IBM Plex Mono",Menlo,monospace;background:var(--surface);border:1px solid var(--ring);border-left:3px solid #d9a21b;border-radius:6px;padding:12px 16px;margin:10px 0;overflow-x:auto;color:var(--ink)}
+.exemple{font-size:13.5px;line-height:1.9;color:var(--ink2);font-variant-numeric:tabular-nums}
+.exemple b{color:var(--ink)}
+.classes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0 4px}
+.classes div{border-radius:8px;padding:12px 14px;font-size:13px;color:var(--ink2);border:1px solid var(--ring);background:var(--surface)}
+.classes b{display:block;font:600 16px var(--titre);color:var(--ink);margin-bottom:3px}
+@media (max-width:640px){.classes{grid-template-columns:1fr}.etape{padding-left:26px}}
 #explorer{padding-bottom:0}
 #explorer nav{margin-top:6px}
 @media (max-width:1040px){.profils{grid-template-columns:repeat(3,1fr)}}
@@ -274,11 +299,11 @@ header{position:relative}
 
   <section class="bloc on" id="methodo">
     <p class="kicker">Méthodologie</p>
-    <h2 class="grand">Quatre piliers, seize indicateurs, un barème à trois niveaux</h2>
+    <h2 class="grand">Comment l’indice est construit</h2>
     <p class="sub" id="sousTitre" hidden></p>
-    <p class="poids" id="ligneP"></p>
-    <div class="piliers" id="piliersMethodo"></div>
-    <p class="note" id="methodoBareme"></p>
+    <p class="poids" id="ligneP" hidden></p>
+    <p class="note">Huit étapes, de l’objet mesuré aux limites. Tous les nombres de cette section sont lus dans les données de la page, et non saisis.</p>
+    <ol class="etapes" id="etapes"></ol>
   </section>
 
   <div class="bloc" id="explorer">
@@ -1195,13 +1220,70 @@ function vueAccueil() {
   }).join('');
 
   /* méthodologie */
-  document.getElementById('piliersMethodo').innerHTML = D.piliers.map(p =>
-    '<div class="pil"><span class="pw">' + fr(p.poids) + '</span><h3>' + p.id + ' · ' + esc(p.nom) +
-    '</h3><ol>' + p.indicateurs.map(i => '<li>' + esc(i.nom) + '</li>').join('') + '</ol></div>').join('');
-  document.getElementById('methodoBareme').innerHTML = 'Chaque indicateur est codé <b>0</b>, <b>1</b> ou <b>2</b> ' +
-    'selon un barème publié (onglet Fiche détaillée). Le score d’un pilier est la somme de ses quatre codes divisée par ' +
-    MAXPIL + ' ; l’indice est la moyenne des piliers pondérée par les poids ci-dessus. Classes de maturité : ' +
-    'I au-delà de ' + fr(D.bornes.haute) + ', III en deçà de ' + fr(D.bornes.basse) + ', II entre les deux.';
+  const cel = [];
+  banques.forEach(b => PIL.forEach(p => IND[p].forEach(i => cel.push(cellule(b, p, i.nom)))));
+  const nbN = k => cel.filter(c => c.niveau === k).length;
+  const docs = new Set(D.banques.flatMap(b => PIL.flatMap(p => IND[p].map(i =>
+    (D.codage[K(b, p, i.nom)] || {}).url)))).size - (0);
+  const est = D.ponderation.filter(r => r.ligne === 'estimation');
+  const moy = D.ponderation.find(r => /moyenne/.test(r.ligne));
+  const ex = bceao || ord[0];
+  const etapes = [
+    ['Ce que l’indice mesure',
+     '<p>L’IGIAM répond à une question : <b>une banque centrale gouverne-t-elle l’intelligence artificielle qu’elle utilise elle-même ?</b> ' +
+     'Il porte sur ses propres usages — prévision, supervision, détection de la fraude, assistants internes — et non sur la réglementation qu’elle impose au secteur bancaire.</p>' +
+     '<p>Cette lecture est décisive pour certains indicateurs. Une banque centrale qui encadre abondamment les algorithmes des banques, sans encadrer les siens, est codée 0 sur l’encadrement interne. ' +
+     'C’est le cas de la Reserve Bank of India sur le pilier Données et éthique.</p>'],
+    ['Corpus et période',
+     '<p><b>' + D.banques.length + ' banques centrales</b> sur quatre continents : ' + D.banques.join(', ') + '. ' +
+     'La période observée est <b>2024-2025</b> : un document publié plus tard peut être retenu s’il décrit l’état de cette période, ' +
+     'et un dispositif adopté après elle ne l’est pas, même s’il est connu.</p>' +
+     '<p>Le codage s’appuie sur <b>' + docs + ' documents et pages cités</b> : rapports annuels, bulletins, actes normatifs, communiqués et, à défaut, déclarations officielles rapportées par la presse. Chaque cellule cite sa source, sa page et sa date dans l’onglet Fiche détaillée.</p>'],
+    ['Règles de codage',
+     '<p>Le protocole fixe des règles que chaque justification invoque explicitement.</p><div class="regles">' +
+     [['Règle 1', 'L’institution elle-même', 'Seuls comptent les dispositifs de la banque centrale pour son propre usage. Les principes qu’elle adresse au secteur, ou les recommandations d’une conférence qu’elle accueille, ne codent pas.'],
+      ['Règle 2', 'Une même date pour tous', 'Les cinq institutions sont codées sur la même fenêtre. Déplacer la fenêtre pour l’une oblige à recoder les autres.'],
+      ['Règle 4', 'Ce qui n’est pas établi n’est pas codé', 'Une cellule sans document est codée 0. Un niveau supérieur non établi par le document fait retenir le niveau inférieur.'],
+      ['Règle 5', 'Pas d’interprétation extensive', 'Un mandat de proposer n’est pas un texte en vigueur ; une déontologie générale n’est pas une charte éthique IA.'],
+      ['Hiérarchie des sources', 'Le primaire d’abord', 'Un document publié par l’institution prime ; une déclaration rapportée par la presse est retenue en dernier recours, et signalée comme preuve faible.']]
+       .map(r => '<div class="regle"><span class="rn">' + r[0] + '</span><b>' + r[1] + '</b>' + r[2] + '</div>').join('') + '</div>'],
+    ['Trois niveaux de preuve',
+     '<p>Chaque cellule déclare la force de ce qui la fonde. Une inférence est un raisonnement explicité à partir d’un document ; une absence de preuve n’est pas une absence établie.</p><div class="preuves">' +
+     [['preuve', 'établies par un document'], ['inference', 'inférences déclarées'], ['absence', 'absences de preuve, codées 0']]
+       .map(([k, t]) => '<div><b>' + nbN(k) + '</b>' + t + '</div>').join('') + '</div>'],
+    ['Le barème',
+     '<p>Chaque indicateur est codé <b>0</b>, <b>1</b> ou <b>2</b> selon trois niveaux définis à l’avance. Ouvrez un pilier pour lire les trois niveaux de chacun de ses indicateurs.</p>' +
+     D.piliers.map(p => '<details><summary>' + p.id + ' · ' + esc(p.nom) + '<span>poids ' + fr(p.poids) + '</span></summary>' +
+       '<table><thead><tr><th>Indicateur</th><th>0</th><th>1</th><th>2</th></tr></thead><tbody>' +
+       p.indicateurs.map(i => '<tr><td>' + esc(i.nom) + '</td>' + i.niveaux.map(n => '<td>' + esc(n) + '</td>').join('') + '</tr>').join('') +
+       '</tbody></table></details>').join('')],
+    ['La pondération',
+     '<p>Les poids ne sont pas fixés à dire d’expert. Ils sont dérivés de <b>deux cadres de référence</b> — ' +
+     [...new Set(est.map(r => r.document))].join(' et ') + ' — selon deux mesures (A et C) et deux dictionnaires (noyau et étendu), soit <b>' + est.length +
+     ' estimations</b>. Les poids retenus sont leur moyenne, arrondie à deux décimales par la méthode du plus fort reste pour que leur somme fasse exactement 1.</p>' +
+     '<details><summary>Les ' + est.length + ' estimations<span>et leur moyenne</span></summary><table><thead><tr><th>Document</th><th>Mesure</th><th>Dictionnaire</th>' +
+     PIL.map(p => '<th class="n">' + p + '</th>').join('') + '</tr></thead><tbody>' +
+     est.map(r => '<tr><td>' + esc(r.document) + '</td><td>' + r.mesure + '</td><td>' + esc(r.dictionnaire) + '</td>' +
+       PIL.map(p => '<td class="n">' + fr(+r[p], 4) + '</td>').join('') + '</tr>').join('') +
+     '</tbody><tfoot><tr><td colspan="3">Moyenne</td>' + PIL.map(p => '<td class="n">' + fr(+moy[p], 4) + '</td>').join('') + '</tr>' +
+     '<tr><td colspan="3">Poids retenus</td>' + PIL.map(p => '<td class="n">' + fr(POIDS[p]) + '</td>').join('') + '</tr></tfoot></table></details>' +
+     '<p style="margin-top:10px">Le pilier Données et éthique pèse le plus (' + fr(POIDS.P4) + '), le Capital humain le moins (' + fr(POIDS.P3) + ').</p>'],
+    ['Le calcul',
+     '<div class="formule">score du pilier = (somme des 4 codes) ÷ ' + MAXPIL + '<br>IGIAM = Σ poids du pilier × score du pilier</div>' +
+     '<p>Exemple pas à pas, <b>' + esc(ex) + '</b> :</p><div class="exemple">' +
+     PIL.map(p => { const cs = IND[p].map(i => cellule(ex, p, i.nom).code);
+       return NOMPIL[p] + ' : (' + cs.join(' + ') + ') ÷ ' + MAXPIL + ' = <b>' + fr(scorePilier(ex, p), 3) + '</b>'; }).join('<br>') +
+     '<br>IGIAM = ' + PIL.map(p => fr(POIDS[p]) + ' × ' + fr(scorePilier(ex, p), 3)).join(' + ') +
+     ' = <b>' + fr(indice(ex), 4) + '</b>, arrondi à <b>' + fr(indice(ex)) + '</b></div>'],
+    ['Classes de maturité et limites',
+     '<div class="classes"><div><b>Classe I</b>au-delà de ' + fr(D.bornes.haute) + '</div><div><b>Classe II</b>de ' +
+     fr(D.bornes.basse) + ' à ' + fr(D.bornes.haute) + '</div><div><b>Classe III</b>en deçà de ' + fr(D.bornes.basse) + '</div></div>' +
+     '<p>L’incertitude principale tient au <b>codage</b>, non à la pondération. Un seul indicateur codé un cran plus haut déplace l’indice de 0,125 × le poids de son pilier, ' +
+     'soit de ' + fr(0.125 * Math.min(...PIL.map(p => POIDS[p])), 3) + ' à ' + fr(0.125 * Math.max(...PIL.map(p => POIDS[p])), 3) + '. ' +
+     'Et ' + nbN('absence') + ' cellules reposent sur une absence de preuve. L’onglet <b>Sensibilité</b> mesure la robustesse du classement à ces trois sources d’incertitude.</p>']
+  ];
+  document.getElementById('etapes').innerHTML = etapes.map(([t, c]) =>
+    '<li class="etape"><h3>' + t + '</h3>' + c + '</li>').join('');
 }
 document.addEventListener('click', e => {
   const el = e.target.closest('[data-inst]');
