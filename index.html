@@ -1214,7 +1214,7 @@ function lier(b, on) {
 }
 
 function robustesse() {
-  const LB = {'Reserve Bank of India|P1|Réglementation des algorithmes décisionnels': 2};
+  const LB = {'Reserve Bank of India|P1|Réglementation des algorithmes décisionnels': 1};
   const sc = (b, w, ov) => PIL.reduce((s, p) => s + w[p] * IND[p].reduce((t, i) => {
     const k = K(b, p, i.nom); return t + (ov && k in ov ? ov[k] : cellule(b, p, i.nom).code); }, 0) / MAXPIL, 0);
   const egaux = Object.fromEntries(PIL.map(p => [p, 1 / PIL.length]));
@@ -1406,7 +1406,7 @@ function vueAccueil() {
      '<div class="classes"><div><b>Classe I</b>au-delà de ' + fr(D.bornes.haute) + '</div><div><b>Classe II</b>de ' +
      fr(D.bornes.basse) + ' à ' + fr(D.bornes.haute) + '</div><div><b>Classe III</b>en deçà de ' + fr(D.bornes.basse) + '</div></div>' +
      '<p>Le classement a été recalculé sous quatre hypothèses. La <b>lecture B</b> lit l’indicateur « Réglementation des algorithmes décisionnels » ' +
-     'comme l’encadrement que la banque impose au secteur : la Reserve Bank of India passe alors de 0 à 2, comme l’indique sa fiche (cadre FREE-AI), et les autres codes sont conservés. ' +
+     'comme l’encadrement que la banque impose au secteur : la Reserve Bank of India passe alors de 0 à 1 : le cadre FREE-AI est un rapport de comité qui recommande, et il est codé « réglementation en projet » par prudence plutôt que « en vigueur ». Les autres codes sont conservés. ' +
      'Les poids sont aussi remplacés par ceux de la version antérieure, puis par des poids égaux, pour répondre à l’objection selon laquelle des poids tirés de cadres internationaux ne conviendraient pas aux banques africaines.</p>' +
      robustesse() +
      '<p>L’incertitude principale tient au <b>codage</b>. Un seul indicateur codé un cran plus haut déplace l’indice de 0,125 × le poids de son pilier, ' +
