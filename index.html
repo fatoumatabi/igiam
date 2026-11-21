@@ -149,7 +149,19 @@ header{padding:0;border:0}
 .classes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0 4px}
 .classes div{border-radius:8px;padding:12px 14px;font-size:13px;color:var(--ink2);border:1px solid var(--ring);background:var(--surface)}
 .classes b{display:block;font:600 16px var(--titre);color:var(--ink);margin-bottom:3px}
-@media (max-width:640px){.classes{grid-template-columns:1fr}.etape{padding-left:26px}}
+.etape details .defile{overflow-x:auto}
+@media (max-width:640px){.classes{grid-template-columns:1fr}.etape{padding-left:26px}
+  .etape details .defile{overflow-x:visible}
+  .etape details table.bareme{font-size:13.5px;display:block;width:100%}
+  .etape details table.bareme tbody{display:block}
+  .etape details table.bareme td{white-space:normal;overflow-wrap:anywhere}
+  .etape details table.bareme thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .etape details table.bareme tr{display:block;padding:9px 0;border-bottom:1px solid var(--grid)}
+  .etape details table.bareme tr:last-child{border-bottom:0}
+  .etape details table.bareme td{display:block;border:0;padding:3px 0 3px 25px;position:relative;color:var(--ink2);line-height:1.45}
+  .etape details table.bareme td:first-child{padding:0 0 7px;font-weight:600;color:var(--ink)}
+  .etape details table.bareme td[data-n]::before{content:attr(data-n);position:absolute;left:0;top:3px;width:18px;height:18px;border-radius:50%;border:1px solid var(--axis);font-size:11px;line-height:16px;text-align:center;color:var(--muted)}
+}
 .signature{margin:18px 0 0;color:#8f99a6;font-size:13px;line-height:1.6;letter-spacing:.01em}
 .signature b{color:#e9e6dc;font-weight:600}
 .sans-lettrine p:first-child::first-letter{font:inherit;float:none;margin:0;color:inherit}
@@ -1380,19 +1392,20 @@ function vueAccueil() {
     ['Le barème',
      '<p>Chaque indicateur est codé <b>0</b>, <b>1</b> ou <b>2</b> selon trois niveaux définis à l’avance. Ouvrez un pilier pour lire les trois niveaux de chacun de ses indicateurs.</p>' +
      D.piliers.map(p => '<details><summary>' + p.id + ' · ' + esc(p.nom) + '<span>poids ' + fr(p.poids) + '</span></summary>' +
-       '<table><thead><tr><th>Indicateur</th><th>0</th><th>1</th><th>2</th></tr></thead><tbody>' +
-       p.indicateurs.map(i => '<tr><td>' + esc(i.nom) + '</td>' + i.niveaux.map(n => '<td>' + esc(n) + '</td>').join('') + '</tr>').join('') +
-       '</tbody></table></details>').join('')],
+       '<div class="defile"><table class="bareme"><thead><tr><th>Indicateur</th><th>0</th><th>1</th><th>2</th></tr></thead><tbody>' +
+       p.indicateurs.map(i => '<tr><td>' + esc(i.nom) + '</td>' +
+         i.niveaux.map((n, k) => '<td data-n="' + k + '">' + esc(n) + '</td>').join('') + '</tr>').join('') +
+       '</tbody></table></div></details>').join('')],
     ['La pondération',
      '<p>Les poids ne sont pas fixés à dire d’expert. Ils sont dérivés de <b>deux cadres de référence</b>, ' +
      [...new Set(est.map(r => r.document))].join(' et ') + ', selon deux mesures (A et C) et deux dictionnaires (noyau et étendu), soit <b>' + est.length +
      ' estimations</b>. Les poids retenus sont leur moyenne, arrondie à deux décimales par la méthode du plus fort reste pour que leur somme fasse exactement 1.</p>' +
-     '<details><summary>Les ' + est.length + ' estimations<span>et leur moyenne</span></summary><table><thead><tr><th>Document</th><th>Mesure</th><th>Dictionnaire</th>' +
+     '<details><summary>Les ' + est.length + ' estimations<span>et leur moyenne</span></summary><div class="defile"><table><thead><tr><th>Document</th><th>Mesure</th><th>Dictionnaire</th>' +
      PIL.map(p => '<th class="n">' + p + '</th>').join('') + '</tr></thead><tbody>' +
      est.map(r => '<tr><td>' + esc(r.document) + '</td><td>' + r.mesure + '</td><td>' + esc(r.dictionnaire) + '</td>' +
        PIL.map(p => '<td class="n">' + fr(+r[p], 4) + '</td>').join('') + '</tr>').join('') +
      '</tbody><tfoot><tr><td colspan="3">Moyenne</td>' + PIL.map(p => '<td class="n">' + fr(+moy[p], 4) + '</td>').join('') + '</tr>' +
-     '<tr><td colspan="3">Poids retenus</td>' + PIL.map(p => '<td class="n">' + fr(POIDS[p]) + '</td>').join('') + '</tr></tfoot></table></details>' +
+     '<tr><td colspan="3">Poids retenus</td>' + PIL.map(p => '<td class="n">' + fr(POIDS[p]) + '</td>').join('') + '</tr></tfoot></table></div></details>' +
      '<p style="margin-top:10px">Le pilier Données et éthique pèse le plus (' + fr(POIDS.P4) + '), le Capital humain le moins (' + fr(POIDS.P3) + ').</p>'],
     ['Le calcul',
      '<div class="formule">score du pilier = (somme des 4 codes) ÷ ' + MAXPIL + '<br>IGIAM = Σ poids du pilier × score du pilier</div>' +
