@@ -1,6 +1,5 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>IGIAM · Indice de Gouvernance Monétaire par IA</title>
-<meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
@@ -743,21 +742,21 @@ function vueReco() {
   document.getElementById('recoIAEtat').textContent = '';
 }
 
-/* La synthèse est rédigée par Claude à partir du seul tableau ci-dessus, et
-   seulement là où la page en a les moyens : ouverte comme fichier local, elle
-   affiche les recommandations calculées et rien de plus. */
+/* La synthèse n'est rédigée que là où la page en a les moyens : ouverte comme
+   fichier local ou depuis un hébergeur, elle affiche les recommandations
+   calculées et rien de plus. */
 let IA = null;
 (async () => {
   IA = window.claude && window.claude.use ? await window.claude.use('sample') : null;
   document.getElementById('recoIANote').textContent = IA
-    ? 'Claude met en forme le tableau ci-dessus en quelques phrases. Il ne reçoit '
-      + 'que ces lignes et les scores de l’institution, et ne dispose d’aucune '
-      + 'autre information. Cette synthèse est un commentaire de lecture : elle '
-      + 'ne fait pas partie des résultats de la thèse, qui sont les scores et le '
-      + 'codage.'
-    : 'La rédaction automatique d’une synthèse n’est pas disponible ici : elle '
-      + 'suppose que la page soit ouverte depuis claude.ai. Les recommandations '
-      + 'ci-dessus, elles, sont calculées et complètes.';
+    ? 'Le tableau ci-dessus est mis en forme en quelques phrases. Seules ces '
+      + 'lignes et les scores de l’institution sont repris ; aucune autre '
+      + 'information n’est mobilisée. Cette synthèse est un commentaire de '
+      + 'lecture : elle ne fait pas partie des résultats de la thèse, qui sont '
+      + 'les scores et le codage.'
+    : 'La rédaction automatique d’une synthèse n’est pas disponible sur cette '
+      + 'version de la page. Les recommandations ci-dessus, elles, sont '
+      + 'calculées et complètes.';
   document.getElementById('recoIABarre').hidden = !IA;
 })();
 
@@ -804,7 +803,7 @@ document.getElementById('recoIABouton').onclick = async () => {
           esc(text).replace(/\n+/g, '</p><p class="calc" style="color:var(--ink)">') +
           '</p>';
       }});
-    etat.textContent = 'Rédigé par Claude le ' +
+    etat.textContent = 'Synthèse établie le ' +
       new Date().toLocaleDateString('fr-FR') + ', à partir du tableau ci-dessus.';
     if (!r.text) zone.innerHTML = '<p class="note">Aucune réponse.</p>';
   } catch (e) {
